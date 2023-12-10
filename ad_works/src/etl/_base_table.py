@@ -25,8 +25,9 @@ class BaseTable(ABC):
     self.filename = filename
     self.primary_keys = primary_keys
     self.environment = get_environment(spark = self.spark)
-    self.raw_db = "raw_fnz_pb"
-    self.db = "fnz_pb"
+    self.db = "ad_works"
+    self.stage_db = f"stage_{self.db}"
+
     
   def _get_merge_on_clause(self):
     sql = [ f"src.{k} = dst.{k}" for k in self.primary_keys]

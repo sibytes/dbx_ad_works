@@ -19,7 +19,7 @@ class Table(BaseTable):
     self.schema:StructType = self._load_schema(name = self.name)
     self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
 
-    self.sql_stage_table = self._load_sql(name = f"{self.raw_db}.{self.name}")
+    self.sql_stage_table = self._load_sql(name = f"{self.stage_db}.{self.name}")
     self.sql_table = self._load_sql(name = f"{self.db}.{self.name}")
 
 
@@ -31,9 +31,9 @@ class Table(BaseTable):
       modified_after:Optional[datetime] = None,
       modified_before:Optional[datetime] = None,
   ):
-    self._logger.info(f"creating stage table `{self.raw_db}`.`{self.name}`")
+    self._logger.info(f"creating stage table `{self.stage_db}`.`{self.name}`")
     sql = f"""
-      create schema if not exists `{self.raw_db}`
+      create schema if not exists `{self.stage_db}`
     """
     self._logger.debug(sql)
     self.spark.sql(sql)
@@ -62,9 +62,9 @@ class Table(BaseTable):
       self._logger.info("modified_after is None and therefore not set")
 
     path = f"/Volumes/{self.environment}_landing/fnz/pb/{self.filename}/*/*/*/*-{self.filename}-*.dat"
-    self._logger.info(f"copy into {path} into `{self.raw_db}`.`{self.name}` with merge_schema = {str(force).lower()} and force = {str(force).lower()}")
+    self._logger.info(f"copy into {path} into `{self.stage_db}`.`{self.name}` with merge_schema = {str(force).lower()} and force = {str(force).lower()}")
     sql = f"""
-      copy into `{self.raw_db}`.`{self.name}`
+      copy into `{self.stage_db}`.`{self.name}`
       FROM
       (
           select
@@ -115,7 +115,7 @@ class Table(BaseTable):
           if(invalid_count=0, true, false) as schema_valid,                        
           h.process_id,
           now() as load_date         
-      from raw_ad_works.{self.name}
+      from {self.stage_db}.{self.name}
       where h.process_id = {process_id}
       group by all
     """
@@ -128,7 +128,7 @@ class Table(BaseTable):
     count_loading = df.count()
     count_loaded = self.spark.sql(f"""
       select 1 cnt 
-      from ad_works._audit a
+      from {self.db}._audit a
       where a.process_id = {process_id}
     """).count()
     df_audit = None
@@ -162,8 +162,8 @@ class Table(BaseTable):
         now() as _load_date,
         src.process_id as _process_id,
         false as _is_migration
-      from raw_ad_works.{self.name} src
-      join ad_works._audit a 
+      from {self.stage_db}.{self.name} src
+      join {self.db}._audit a 
         on src._metadata.file_name = a.file_name
        and src._metadata.file_size = a.file_size
        and src._metadata.file_modification_time = a.file_modification_time
@@ -189,7 +189,7 @@ class Table(BaseTable):
     df.createOrReplaceTempView(f"src_{self.name}")
 
     try:
-      df_check = self.spark.sql(f"select * from ad_works.{self.name} limit 1")
+      df_check = self.spark.sql(f"select * from {self.db}.{self.name} limit 1")
       df_check.collect()
     except Exception:
       initial_load = True
