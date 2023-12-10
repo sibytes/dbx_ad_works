@@ -8,7 +8,7 @@ from typing import Optional
 from ._base_table import BaseTable
 
 
-class Table(BaseTable):
+class BatchTable(BaseTable):
 
   def __init__(
       self,**kwargs
@@ -250,5 +250,174 @@ class Table(BaseTable):
 
     return ddl
 
+
+
+class AutoloaderTable(BatchTable):
+
+  def __init__(
+      self,**kwargs
+  ):
+    super().__init__(**kwargs)
+
+    # load spark and sql
+    self.schema:StructType = self._load_schema(name = self.name)
+    self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
+
+    self.sql_stage_table = self._load_sql(name = f"{self.stage_db}.{self.name}")
+    self.sql_table = self._load_sql(name = f"{self.db}.{self.name}")
+
+
+  def stage_into(
+      self, 
+      process_id:int, 
+      merge_schema=True, 
+      force=False,
+      modified_after:Optional[datetime] = None,
+      modified_before:Optional[datetime] = None,
+  ):
+    self._logger.info(f"creating stage table `{self.stage_db}`.`{self.name}`")
+    sql = f"""
+      create schema if not exists `{self.stage_db}`
+    """
+    self._logger.debug(sql)
+    self.spark.sql(sql)
+
+    self._logger.debug(self.sql_stage_table)
+    self.spark.sql(self.sql_stage_table)
+
+    modifieds = []
+    if isinstance(modified_after, datetime):
+      fmt_modified_after = modified_after.strftime("%Y-%m-%d %H:%M:%S")
+      modifieds.append(f"'modifiedAfter' = '{fmt_modified_after}'")
+    elif modified_after is not None:
+      raise Exception(f"Invalid modified_after={modified_after} of type={type(modified_after)}. Parameter must be a datetime or None")
+
+    if isinstance(modified_before, datetime):
+      fmt_modified_before = modified_before.strftime("%Y-%m-%d %H:%M:%S")
+      modifieds.append(f"'modifiedBefore' = '{fmt_modified_before}'")
+    elif modified_before is not None:
+      raise Exception(f"Invalid modified_before={modified_before} of type={type(modified_before)}. Parameter must be a datetime or None")
+
+    if modifieds:
+      modified_clause = ",".join(modifieds)
+      self._logger.info(f"modified_after is set to filter on {modified_clause}")
+    else:
+      modified_clause = ''
+      self._logger.info("modified_after is None and therefore not set")
+
+    path = f"/Volumes/{self.environment}_landing/fnz/pb/{self.filename}/*/*/*/*-{self.filename}-*.dat"
+    self._logger.info(f"copy into {path} into `{self.stage_db}`.`{self.name}` with merge_schema = {str(force).lower()} and force = {str(force).lower()}")
+    sql = f"""
+      copy into `{self.stage_db}`.`{self.name}`
+      FROM
+      (
+          select
+            cast({process_id} as bigint) as process_id,
+            now() as load_date,
+            _metadata as metadata,
+            from_csv(
+              _c0, 
+              '{self.schema_ddl}',
+              map('mode', 'PERMISSIVE')
+            ) as data
+          FROM '{path}'
+      )
+      FILEFORMAT = CSV
+      FORMAT_OPTIONS (
+        {modified_clause}
+        'mergeSchema' = 'true',
+        'delimiter' = '~',
+        'header' = 'false'
+      )
+      COPY_OPTIONS (
+        'force' = '{str(force).lower()}',
+        'mergeSchema' = '{str(merge_schema).lower()}'
+      );
+    """
+    self._logger.debug(sql)
+    self.spark.sql(sql)
+    
+
+  def load_audit(
+    self, 
+    process_id: int
+  ):
+
+    sql = f"""
+      select
+          {self.name} as `table`,            
+          count(1) as total_count,
+          sum(if(data._corrupt_record is null, 1, 0)) as valid_count,  
+          sum(if(data._corrupt_record is not null, 1, 0)) as invalid_count,
+          valid_count / total_count as invalid_ratio         
+          _metadata.file_path,              
+          _metadata.file_name,              
+          _metadata.file_size, 
+          _metadata.file_modification_time,             
+          _metadata.file_block_start,       
+          _metadata.file_block_length,      
+          if(invalid_count=0, true, false) as schema_valid,                        
+          h.process_id,
+          now() as load_date         
+      from {self.stage_db}.{self.name}
+      where h.process_id = {process_id}
+      group by all
+    """
+    self._logger.debug(sql)
+    
+    # we have to lookup what's loaded 1st
+    # we cannot merge append only because of concurrency control.
+    df = self.spark.sql(sql)
+    df.createOrReplaceTempView(f"audit_{self.name}")
+    count_loading = df.count()
+    count_loaded = self.spark.sql(f"""
+      select 1 cnt 
+      from {self.db}._audit a
+      where a.process_id = {process_id}
+    """).count()
+    df_audit = None
+    self._logger.info(f"_audit logging count_loaded={count_loaded} and count_loading={count_loading}")
+    if count_loaded == 0 and count_loading > 0:
+      self._logger.info(f"loading {count_loading} records into _audit")
+      df_audit = df.write.format("delta").mode("append").saveAsTable(f"{self.db}._audit")
+    elif count_loaded == count_loading:
+      self._logger.info(f"{count_loaded} records already logger into _audit")
+    else:
+      raise Exception(f"Inconistency has occured in the _audit logging count_loaded={count_loaded} and count_loading={count_loading}")
+
+    return df_audit
+
+
+
+  def _load_schema(self, name:str):
+    
+    path = os.path.join(os.getcwd(), self._SCHEMA_PATH, f"{name}.json")
+    self._logger.info(f"loading schema {path}")
+
+    with open(path, "r", encoding="utf-8") as f:
+      data = json.load(f)
+    
+    try:
+      schema = StructType.fromJson(data)
+    except Exception as e:
+      msg = f"failed to convert the schema defined at {path} to a spark schema. Check that is't a valid spark schema."
+      self._logger.error(msg)
+      raise Exception(msg) from e
+
+    return schema
+  
+  def _get_ddl(self, spark_schema: StructType, header: bool = True):
+    self._logger.debug(f"Converting spark schema to ddl with header={str(header)}")
+    if header:
+        ddl = [f"{f.name} {f.dataType.simpleString()}" for f in spark_schema.fields]
+        self._logger.debug(ddl)
+    else:
+        ddl = [
+            f"_c{i} {f.dataType.simpleString()}"
+            for i, f in enumerate(spark_schema.fields)
+        ]
+        self._logger.debug(ddl)
+
+    return ddl
 
 
