@@ -1,7 +1,5 @@
 
 from ._table import BatchTable, AutoloaderTable
-from ._table_balance import TableBalance
-from ._table_price import TablePrice
 
 
 # register tables here and map them to a table Class
@@ -12,7 +10,7 @@ def tables():
   return {
     "hr_department": {
       "filename": "hr_department",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "department_id"
@@ -20,7 +18,7 @@ def tables():
     },
     "hr_employee": {
       "filename": "hr_employee",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_ID"
@@ -28,7 +26,7 @@ def tables():
     },
     "hr_employee_department_history": {
       "filename": "hr_employee_department_history",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -39,7 +37,7 @@ def tables():
     },
     "hr_employee_pay_history": {
       "filename": "hr_employee_pay_history",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -48,7 +46,7 @@ def tables():
     },
     "hr_job_candidate": {
       "filename": "hr_job_candidate",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "job_candidate_date"
@@ -56,7 +54,7 @@ def tables():
     },
     "hr_shift": {
       "filename": "hr_shift",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "shift_id"
@@ -64,7 +62,7 @@ def tables():
     },
     "person_address": {
       "filename": "person_address",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "address_id"
@@ -72,7 +70,7 @@ def tables():
     },
     "person_address_type": {
       "filename": "person_address_type",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "address_type_id"
@@ -80,7 +78,7 @@ def tables():
     },
     "person_business_entity": {
       "filename": "person_business_entity",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
@@ -88,7 +86,7 @@ def tables():
     },
     "person_business_entity_address": {
       "filename": "person_business_entity_address",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -98,7 +96,7 @@ def tables():
     },
     "person_business_entity_contact": {
       "filename": "person_business_entity_contact",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -108,7 +106,7 @@ def tables():
     },
     "person_contact_type": {
       "filename": "person_contact_type",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "contact_type_id"
@@ -116,7 +114,7 @@ def tables():
     },
     "person_country_region": {
       "filename": "person_country_region",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "country_region_code"
@@ -124,7 +122,7 @@ def tables():
     },
     "person_email_address": {
       "filename": "person_email_address",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -133,7 +131,7 @@ def tables():
     },
     "person_password": {
       "filename": "person_password",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
@@ -141,14 +139,14 @@ def tables():
     },
     "person_person": {
       "filename": "person_person",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
     },
     "person_personp_phone": {
       "filename": "person_personp_phone",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -158,7 +156,7 @@ def tables():
     },
     "person_phone_number_type": {
       "filename": "person_phone_number_type",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "phone_number_type_id"
@@ -166,7 +164,7 @@ def tables():
     },
     "person_state_province": {
       "filename": "person_state_province",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "state_province_id"
@@ -174,7 +172,7 @@ def tables():
     },
     "production_bill_of_materials": {
       "filename": "production_bill_of_materials",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "bill_of_materials_id"
@@ -182,7 +180,7 @@ def tables():
     },
     "production_culture": {
       "filename": "production_culture",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "culture_id"
@@ -190,7 +188,7 @@ def tables():
     },
     "production_document": {
       "filename": "production_document",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "document_node"
@@ -198,7 +196,7 @@ def tables():
     },
     "production_illustration": {
       "filename": "production_illustration",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "illustration_id"
@@ -206,7 +204,7 @@ def tables():
     },
     "production_location": {
       "filename": "production_location",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         
@@ -214,7 +212,7 @@ def tables():
     },
     "production_product": {
       "filename": "production_product",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_id"
@@ -222,7 +220,7 @@ def tables():
     },
     "production_product_category": {
       "filename": "production_product_category",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_category_id"
@@ -230,7 +228,7 @@ def tables():
     },
     "production_product_cost_history": {
       "filename": "production_product_cost_history",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_id",
@@ -239,7 +237,7 @@ def tables():
     },
     "production_product_description": {
       "filename": "production_product_description",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         product_description_id
@@ -247,7 +245,7 @@ def tables():
     },
     "production_product_document": {
       "filename": "production_product_document",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_id",
@@ -256,7 +254,7 @@ def tables():
     },
     "production_product_inventory": {
       "filename": "production_product_inventory",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_id",
@@ -265,7 +263,7 @@ def tables():
     },
     "production_product_list_price_history": {
       "filename": "production_product_list_price_history",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_id",
@@ -274,7 +272,7 @@ def tables():
     },
     "production_product_model": {
       "filename": "production_product_model",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_model_id"
@@ -282,7 +280,7 @@ def tables():
     },
     "production_product_model_illustration": {
       "filename": "production_product_model_illustration",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_model_id",
@@ -291,7 +289,7 @@ def tables():
     },
     "production_product_model_product_description_culture": {
       "filename": "production_product_model_product_description_culture",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_model_id",
@@ -301,7 +299,7 @@ def tables():
     },
     "production_product_photo": {
       "filename": "production_product_photo",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_photo_id"
@@ -309,7 +307,7 @@ def tables():
     },
     "production_product_product_photo": {
       "filename": "production_product_product_photo",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_id"
@@ -318,7 +316,7 @@ def tables():
     },
     "production_product_review": {
       "filename": "production_product_review",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_review_id"
@@ -326,7 +324,7 @@ def tables():
     },
     "production_product_subcategory": {
       "filename": "production_product_subcategory",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "product_subcategory_id"
@@ -334,7 +332,7 @@ def tables():
     },
     "production_scrap_reason": {
       "filename": "production_scrap_reason",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "scrap_reason_id"
@@ -342,7 +340,7 @@ def tables():
     },
     "production_transaction_history": {
       "filename": "production_transaction_history",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "transaction_id"
@@ -350,7 +348,7 @@ def tables():
     },
     "production_transaction_history_archive": {
       "filename": "production_transaction_history_archive",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "transaction_id"
@@ -358,7 +356,7 @@ def tables():
     },
     "production_unit_measure": {
       "filename": "production_unit_measure",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "unit_measure_code"
@@ -366,7 +364,7 @@ def tables():
     },
     "production_work_order": {
       "filename": "production_work_order",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "work_order_id"
@@ -374,7 +372,7 @@ def tables():
     },
     "production_work_order_routing": {
       "filename": "production_work_order_routing",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "work_order_id",
@@ -384,7 +382,7 @@ def tables():
     },
     "purchasing_product_vendor": {
       "filename": "purchasing_product_vendor",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
@@ -392,7 +390,7 @@ def tables():
     },
     "purchasing_purchase_order_detail": {
       "filename": "purchasing_purchase_order_detail",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "purchase_order_detail",
@@ -401,7 +399,7 @@ def tables():
     },
     "purchasing_purchase_order_header": {
       "filename": "purchasing_purchase_order_header",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "purchase_order_detail"
@@ -409,7 +407,7 @@ def tables():
     },
     "purchasing_ship_method": {
       "filename": "purchasing_ship_method",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "ship_method_id"
@@ -417,7 +415,7 @@ def tables():
     },
     "purchasing_vendor": {
       "filename": "purchasing_vendor",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
@@ -425,7 +423,7 @@ def tables():
     },
     "sales_country_region_currency": {
       "filename": "sales_country_region_currency",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "country_region_code"
@@ -434,7 +432,7 @@ def tables():
     },
     "sales_credit_card": {
       "filename": "sales_credit_card",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "credit_card_id"
@@ -442,7 +440,7 @@ def tables():
     },
     "sales_currency": {
       "filename": "sales_currency",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "currency_code"
@@ -450,7 +448,7 @@ def tables():
     },
     "sales_currency_rate": {
       "filename": "sales_currency_rate",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "currency_rate_id"
@@ -458,7 +456,7 @@ def tables():
     },
     "sales_customer": {
       "filename": "sales_customer",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "customer_id"
@@ -466,7 +464,7 @@ def tables():
     },
     "sales_person_credit_card": {
       "filename": "sales_person_credit_card",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -475,7 +473,7 @@ def tables():
     },
     "sales_sales_order_detail": {
       "filename": "sales_sales_order_detail",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "sales_order_id",
@@ -484,7 +482,7 @@ def tables():
     },
     "sales_sales_order_header": {
       "filename": "sales_sales_order_header",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "sales_order_id"
@@ -492,7 +490,7 @@ def tables():
     },
     "sales_sales_order_header_sales_reason": {
       "filename": "sales_sales_order_header_sales_reason",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "sales_order_id",
@@ -501,7 +499,7 @@ def tables():
     },
     "sales_sales_person": {
       "filename": "sales_sales_person",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
@@ -509,7 +507,7 @@ def tables():
     },
     "sales_sales_person_quota_history": {
       "filename": "sales_sales_person_quota_history",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -518,7 +516,7 @@ def tables():
     },
     "sales_sales_reason": {
       "filename": "sales_sales_reason",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "sales_reason_id"
@@ -526,7 +524,7 @@ def tables():
     },
     "sales_sales_tax_rate": {
       "filename": "sales_sales_tax_rate",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "sales_tax_rate_id"
@@ -534,7 +532,7 @@ def tables():
     },
     "sales_sales_territory": {
       "filename": "sales_sales_territory",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "tarritory_id"
@@ -542,7 +540,7 @@ def tables():
     },
     "sales_sales_territory_history": {
       "filename": "sales_sales_territory_history",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -552,7 +550,7 @@ def tables():
     },
     "sales_shopping_cart_item": {
       "filename": "sales_shopping_cart_item",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "shopping_cart_item_id"
@@ -560,7 +558,7 @@ def tables():
     },
     "sales_special_offer": {
       "filename": "sales_special_offer",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "special_offer_id"
@@ -568,7 +566,7 @@ def tables():
     },
     "sales_special_offer_product": {
       "filename": "sales_special_offer_product",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "special_offer_id",
@@ -577,7 +575,7 @@ def tables():
     },
     "sales_store": {
       "filename": "sales_store",
-      "batch": BatchTable,
+      "default":BatchTable,
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
