@@ -143,6 +143,7 @@ def tables():
       "autoloader": AutoloaderTable,
       "primary_keys": [
         "business_entity_id"
+      ]
     },
     "person_personp_phone": {
       "filename": "person_personp_phone",
