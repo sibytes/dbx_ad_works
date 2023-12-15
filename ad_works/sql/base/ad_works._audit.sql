@@ -1,4 +1,4 @@
-create table if not exists ad_works._audit 
+create table if not exists {{database}}._audit 
 (
     `table` string,
     total_count bigint,
@@ -11,12 +11,12 @@ create table if not exists ad_works._audit
     file_modification_time timestamp,
     file_block_start bigint,
     file_block_length bigint,
-    schema_valie boolean,
+    schema_valid boolean,
     snapshot_date timestamp,
     process_id bigint,
     load_date timestamp
 )
   USING DELTA
---   TBLPROPERTIES (
-    
---   )
+  TBLPROPERTIES (
+    delta.appendOnly = true
+  )
