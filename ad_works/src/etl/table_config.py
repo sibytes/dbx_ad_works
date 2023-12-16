@@ -1,5 +1,5 @@
 
-from ._table import BatchTable
+from ._batch_table import BatchTable
 
 PROJECT = "ad_works"
 # register tables here and map them to a table Class

@@ -1,7 +1,7 @@
 from ._logging import configure_logging
 configure_logging()
 
-from ._table import BatchTable
+from ._batch_table import BatchTable
 from ._base_table import BaseTable
 from ._table_factory import get_table
 from .table_config import tables, PROJECT

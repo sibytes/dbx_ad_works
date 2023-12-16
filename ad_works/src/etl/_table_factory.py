@@ -5,7 +5,8 @@ from pyspark.sql import SparkSession
 def get_table(
     spark: SparkSession,
     table: str, 
-    load_type: str
+    load_type: str,
+    schema_version: str|None
   ):
 
   try:
@@ -23,7 +24,7 @@ def get_table(
     msg = f"table {table} has no class defined in the factory metadata it must have one."
     raise Exception(msg) from e
 
-  return table_cls(spark = spark, **table_metadata)
+  return table_cls(spark = spark, schema_version=schema_version, **table_metadata)
 
 
 
