@@ -4,6 +4,8 @@ from pyspark.sql import SparkSession
 from enum import Enum
 import jinja2
 from typing import Dict
+import yaml
+import json
 
 class Variables(Enum):
     DATABASE = "database"
@@ -11,6 +13,17 @@ class Variables(Enum):
     PROJECT = "project"
     CATALOG = "catalog"
     COLUMNS = "columns"
+
+class Environments(Enum):
+  dev = "adb-8723178682651460"
+  tst = "N/A"
+  pre = "N/A"
+  prd = "N/A"
+
+class FileTypes(Enum):
+  yaml = ".yaml",
+  yml = ".yml",
+  json = ".json"
 
 def render_jinja(
   data: str, 
@@ -53,29 +66,50 @@ def load_sql(
 def get_environment(spark:SparkSession):
 
   logger = logging.getLogger(__name__)
-  envs = {
-     "adb-8723178682651460": "dev",
-     "?": "tst",
-     "?": "pre",
-     "?": "prd"
-  }
+
   workspace = spark.conf.get("spark.databricks.workspaceUrl").split(".")[0]
   logger.debug(f"Detected the workspace {workspace} for environment configuration")
   try:
-    env = envs[workspace]
-  except KeyError as e:
-    msg = f"Workspace {e} not found in environment configuration"
+    env = Environments(workspace)
+  except Exception as e:
+    msg = f"Workspace {workspace} not found in Environments enum"
     logger.error(msg)
     raise Exception(msg)
-
-  if env not in ("dev", "tst", "pre", "prd"):
-      msg = f"unknown QDP environment name {env}"
-      logger.error(msg)
-      raise Exception(f"unknown QDP environment name {env}")
   
   logger.info(f"Detected the {env} environment")
 
   return env
+
+def convert_schema(directory:str):
+  logger = logging.getLogger(__name__)
+
+  for filename in os.listdir(directory):
+    path, ext = os.path.splitext(filename)
+    full_path = os.path.abspath(os.path.join(directory, filename))
+    
+
+    if  FileTypes(ext) in (FileTypes.yml,FileTypes.yaml):
+      with open(full_path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+      path, ext = os.path.splitext(full_path)
+      to_full_path = os.path.join(path, FileTypes.json.name)
+      logger.info(f"converting {full_path} to {to_full_path}")
+      with open(to_full_path, "w", encoding="utf-8") as f:
+        json.dumps(data, indent=4)
+
+    elif FileTypes(ext) == FileTypes.json:
+      with open(full_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+      path, ext = os.path.splitext(full_path)
+      to_full_path = os.path.join(path, FileTypes.yaml.name)
+      logger.info(f"converting {full_path} to {to_full_path}")
+      with open(to_full_path, "w", encoding="utf-8") as f:
+        yaml.safe_dump(data, indent=4)
+
+    else:
+        continue
 
 
 
