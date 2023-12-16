@@ -25,6 +25,9 @@ class FileTypes(Enum):
   yml = ".yml"
   json = ".json"
 
+  def __str__(self):
+    return self.value
+
 def render_jinja(
   data: str, 
   replacements:Dict[Variables, str]
@@ -93,7 +96,7 @@ def convert_schema(directory:str):
         data = yaml.safe_load(f)
 
       path, ext = os.path.splitext(full_path)
-      to_full_path = f"{path}{FileTypes.json.name}"
+      to_full_path = f"{path}{str(FileTypes.json)}"
       logger.info(f"converting {full_path} to {to_full_path}")
       with open(to_full_path, "w", encoding=encoding) as f:
         json.dumps(data, indent=4)
@@ -103,7 +106,7 @@ def convert_schema(directory:str):
         data = json.load(f)
 
       path, ext = os.path.splitext(full_path)
-      to_full_path = f"{path}{FileTypes.yaml.name}"
+      to_full_path = f"{path}{str(FileTypes.yaml)}"
       logger.info(f"converting {full_path} to {to_full_path}")
       with open(to_full_path, "w", encoding=encoding) as f:
         yaml.safe_dump(data, indent=4)
