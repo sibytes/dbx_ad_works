@@ -16,7 +16,7 @@ create table if not exists {{database}}._audit
     process_id bigint,
     load_date timestamp
 )
-  USING DELTA
-  TBLPROPERTIES (
-    delta.appendOnly = true
-  )
+USING DELTA
+TBLPROPERTIES (
+  delta.appendOnly = true
+)

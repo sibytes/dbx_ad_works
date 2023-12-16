@@ -50,7 +50,7 @@ class BaseTable(ABC):
     pass
 
   @abstractmethod
-  def load_header_footer(
+  def load_audit(
     self, 
     process_id: int
   ) -> Optional[DataFrame]:

@@ -10,6 +10,7 @@ class Variables(Enum):
     TABLE = "table"
     PROJECT = "project"
     CATALOG = "catalog"
+    COLUMNS = "columns"
 
 def render_jinja(
   data: str, 

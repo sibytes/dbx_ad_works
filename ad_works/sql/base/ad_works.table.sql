@@ -1,6 +1,6 @@
 create table if not exists {{ database }}.{{ table }} 
 (
-    {{ primary_keys}},
+    {{ columns }},
     _corrupt_record string null,
     _process_id bigint not null,
     _snapshot_date timestamp not null,

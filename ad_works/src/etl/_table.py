@@ -6,6 +6,7 @@ from pyspark.sql import SparkSession, DataFrame
 from datetime import datetime
 from typing import Optional
 from ._base_table import BaseTable
+from .utils import Variables
 
 
 class BatchTable(BaseTable):
@@ -19,8 +20,22 @@ class BatchTable(BaseTable):
     self.schema:StructType = self._load_schema(name = self.name)
     self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
 
-    self.sql_stage_table = self._load_sql(name = f"{self.stage_db}.{self.name}")
-    self.sql_table = self._load_sql(name = f"{self.db}.{self.name}")
+    self.sql_stage_table = self._load_sql(
+      name = f"stage/{self.stage_db}.table",
+      variables = {
+        Variables.DATABASE: self.stage_db,
+        Variables.TABLE: self.name
+      }
+    )
+
+    self.sql_table = self._load_sql(
+      name = f"base/{self.db}.table",
+      variables = {
+        Variables.DATABASE: self.db,
+        Variables.TABLE: self.name,
+        Variables.COLUMNS: self.schema_ddl
+      }
+    )
 
 
   def stage_into(

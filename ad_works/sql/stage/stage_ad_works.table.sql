@@ -1,6 +1,5 @@
 create table if not exists {{ database }}.{{ table }} 
 (
-    {{ primary_keys}},
     _corrupt_record string null,
     _process_id bigint not null,
     _snapshot_date timestamp not null,
@@ -12,6 +11,6 @@ create table if not exists {{ database }}.{{ table }}
     _file_block_length bigint
 )
 USING DELTA
-  TBLPROPERTIES (
-    delta.appendOnly = true
-  )
+TBLPROPERTIES (
+  delta.appendOnly = true
+)
