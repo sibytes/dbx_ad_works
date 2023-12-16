@@ -26,7 +26,7 @@ def tables():
     },
     "hr_employee_department_history": {
       "project": PROJECT,
-      "filename": "hr_employee_department_history",
+      "filename": "hr_employeedepartmenthistory",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -37,7 +37,7 @@ def tables():
     },
     "hr_employee_pay_history": {
       "project": PROJECT,
-      "filename": "hr_employee_pay_history",
+      "filename": "hr_employeepayhistory",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -46,7 +46,7 @@ def tables():
     },
     "hr_job_candidate": {
       "project": PROJECT,
-      "filename": "hr_job_candidate",
+      "filename": "hr_jobcandidate",
       "default": BatchTable,
       "primary_keys": [
         "job_candidate_date"
@@ -70,7 +70,7 @@ def tables():
     },
     "person_address_type": {
       "project": PROJECT,
-      "filename": "person_address_type",
+      "filename": "person_addresstype",
       "default": BatchTable,
       "primary_keys": [
         "address_type_id"
@@ -78,7 +78,7 @@ def tables():
     },
     "person_business_entity": {
       "project": PROJECT,
-      "filename": "person_business_entity",
+      "filename": "person_businessentity",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id"
@@ -86,7 +86,7 @@ def tables():
     },
     "person_business_entity_address": {
       "project": PROJECT,
-      "filename": "person_business_entity_address",
+      "filename": "person_businessentityaddress",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -96,7 +96,7 @@ def tables():
     },
     "person_business_entity_contact": {
       "project": PROJECT,
-      "filename": "person_business_entity_contact",
+      "filename": "person_businessentitycontact",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -106,7 +106,7 @@ def tables():
     },
     "person_contact_type": {
       "project": PROJECT,
-      "filename": "person_contact_type",
+      "filename": "person_contacttype",
       "default": BatchTable,
       "primary_keys": [
         "contact_type_id"
@@ -114,7 +114,7 @@ def tables():
     },
     "person_country_region": {
       "project": PROJECT,
-      "filename": "person_country_region",
+      "filename": "person_countryregion",
       "default": BatchTable,
       "primary_keys": [
         "country_region_code"
@@ -122,7 +122,7 @@ def tables():
     },
     "person_email_address": {
       "project": PROJECT,
-      "filename": "person_email_address",
+      "filename": "person_emailaddress",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -145,9 +145,9 @@ def tables():
         "business_entity_id"
       ]
     },
-    "person_personp_phone": {
+    "person_person_phone": {
       "project": PROJECT,
-      "filename": "person_personp_phone",
+      "filename": "person_personphone",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -157,7 +157,7 @@ def tables():
     },
     "person_phone_number_type": {
       "project": PROJECT,
-      "filename": "person_phone_number_type",
+      "filename": "person_phonenumbertype",
       "default": BatchTable,
       "primary_keys": [
         "phone_number_type_id"
@@ -165,7 +165,7 @@ def tables():
     },
     "person_state_province": {
       "project": PROJECT,
-      "filename": "person_state_province",
+      "filename": "person_stateprovince",
       "default": BatchTable,
       "primary_keys": [
         "state_province_id"
@@ -173,7 +173,7 @@ def tables():
     },
     "production_bill_of_materials": {
       "project": PROJECT,
-      "filename": "production_bill_of_materials",
+      "filename": "production_billofmaterials",
       "default": BatchTable,
       "primary_keys": [
         "bill_of_materials_id"
@@ -221,7 +221,7 @@ def tables():
     },
     "production_product_category": {
       "project": PROJECT,
-      "filename": "production_product_category",
+      "filename": "production_productcategory",
       "default": BatchTable,
       "primary_keys": [
         "product_category_id"
@@ -229,7 +229,7 @@ def tables():
     },
     "production_product_cost_history": {
       "project": PROJECT,
-      "filename": "production_product_cost_history",
+      "filename": "production_productcosthistory",
       "default": BatchTable,
       "primary_keys": [
         "product_id",
@@ -238,7 +238,7 @@ def tables():
     },
     "production_product_description": {
       "project": PROJECT,
-      "filename": "production_product_description",
+      "filename": "production_productdescription",
       "default": BatchTable,
       "primary_keys": [
         "product_description_id"
@@ -246,7 +246,7 @@ def tables():
     },
     "production_product_document": {
       "project": PROJECT,
-      "filename": "production_product_document",
+      "filename": "production_productdocument",
       "default": BatchTable,
       "primary_keys": [
         "product_id",
@@ -255,7 +255,7 @@ def tables():
     },
     "production_product_inventory": {
       "project": PROJECT,
-      "filename": "production_product_inventory",
+      "filename": "production_productinventory",
       "default": BatchTable,
       "primary_keys": [
         "product_id",
@@ -264,7 +264,7 @@ def tables():
     },
     "production_product_list_price_history": {
       "project": PROJECT,
-      "filename": "production_product_list_price_history",
+      "filename": "production_productlistpricehistory",
       "default": BatchTable,
       "primary_keys": [
         "product_id",
@@ -273,7 +273,7 @@ def tables():
     },
     "production_product_model": {
       "project": PROJECT,
-      "filename": "production_product_model",
+      "filename": "production_productmodel",
       "default": BatchTable,
       "primary_keys": [
         "product_model_id"
@@ -281,16 +281,16 @@ def tables():
     },
     "production_product_model_illustration": {
       "project": PROJECT,
-      "filename": "production_product_model_illustration",
+      "filename": "production_productmodelillustration",
       "default": BatchTable,
       "primary_keys": [
         "product_model_id",
         "illustration_id"
       ]
     },
-    "production_product_model_product_description_culture": {
+    "production_product_model_productdescriptionculture": {
       "project": PROJECT,
-      "filename": "production_product_model_product_description_culture",
+      "filename": "production_productmodelproductdescriptionculture",
       "default": BatchTable,
       "primary_keys": [
         "product_model_id",
@@ -300,7 +300,7 @@ def tables():
     },
     "production_product_photo": {
       "project": PROJECT,
-      "filename": "production_product_photo",
+      "filename": "production_productphoto",
       "default": BatchTable,
       "primary_keys": [
         "product_photo_id"
@@ -308,7 +308,7 @@ def tables():
     },
     "production_product_product_photo": {
       "project": PROJECT,
-      "filename": "production_product_product_photo",
+      "filename": "production_productproductphoto",
       "default": BatchTable,
       "primary_keys": [
         "product_id"
@@ -317,7 +317,7 @@ def tables():
     },
     "production_product_review": {
       "project": PROJECT,
-      "filename": "production_product_review",
+      "filename": "production_productreview",
       "default": BatchTable,
       "primary_keys": [
         "product_review_id"
@@ -325,7 +325,7 @@ def tables():
     },
     "production_product_subcategory": {
       "project": PROJECT,
-      "filename": "production_product_subcategory",
+      "filename": "production_productsubcategory",
       "default": BatchTable,
       "primary_keys": [
         "product_subcategory_id"
@@ -333,7 +333,7 @@ def tables():
     },
     "production_scrap_reason": {
       "project": PROJECT,
-      "filename": "production_scrap_reason",
+      "filename": "production_scrapreason",
       "default": BatchTable,
       "primary_keys": [
         "scrap_reason_id"
@@ -341,7 +341,7 @@ def tables():
     },
     "production_transaction_history": {
       "project": PROJECT,
-      "filename": "production_transaction_history",
+      "filename": "production_transactionhistory",
       "default": BatchTable,
       "primary_keys": [
         "transaction_id"
@@ -349,7 +349,7 @@ def tables():
     },
     "production_transaction_history_archive": {
       "project": PROJECT,
-      "filename": "production_transaction_history_archive",
+      "filename": "production_transactionhistoryarchive",
       "default": BatchTable,
       "primary_keys": [
         "transaction_id"
@@ -357,7 +357,7 @@ def tables():
     },
     "production_unit_measure": {
       "project": PROJECT,
-      "filename": "production_unit_measure",
+      "filename": "productionunitmeasure",
       "default": BatchTable,
       "primary_keys": [
         "unit_measure_code"
@@ -365,7 +365,7 @@ def tables():
     },
     "production_work_order": {
       "project": PROJECT,
-      "filename": "production_work_order",
+      "filename": "production_workorder",
       "default": BatchTable,
       "primary_keys": [
         "work_order_id"
@@ -373,7 +373,7 @@ def tables():
     },
     "production_work_order_routing": {
       "project": PROJECT,
-      "filename": "production_work_order_routing",
+      "filename": "production_workorderrouting",
       "default": BatchTable,
       "primary_keys": [
         "work_order_id",
@@ -383,7 +383,7 @@ def tables():
     },
     "purchasing_product_vendor": {
       "project": PROJECT,
-      "filename": "purchasing_product_vendor",
+      "filename": "purchasing_productvendor",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id"
@@ -391,7 +391,7 @@ def tables():
     },
     "purchasing_purchase_order_detail": {
       "project": PROJECT,
-      "filename": "purchasing_purchase_order_detail",
+      "filename": "purchasing_purchaseorderdetail",
       "default": BatchTable,
       "primary_keys": [
         "purchase_order_detail",
@@ -400,7 +400,7 @@ def tables():
     },
     "purchasing_purchase_order_header": {
       "project": PROJECT,
-      "filename": "purchasing_purchase_order_header",
+      "filename": "purchasing_purchaseorderheader",
       "default": BatchTable,
       "primary_keys": [
         "purchase_order_detail"
@@ -408,7 +408,7 @@ def tables():
     },
     "purchasing_ship_method": {
       "project": PROJECT,
-      "filename": "purchasing_ship_method",
+      "filename": "purchasing_shipmethod",
       "default": BatchTable,
       "primary_keys": [
         "ship_method_id"
@@ -424,7 +424,7 @@ def tables():
     },
     "sales_country_region_currency": {
       "project": PROJECT,
-      "filename": "sales_country_region_currency",
+      "filename": "sales_countryregioncurrency",
       "default": BatchTable,
       "primary_keys": [
         "country_region_code"
@@ -433,7 +433,7 @@ def tables():
     },
     "sales_credit_card": {
       "project": PROJECT,
-      "filename": "sales_credit_card",
+      "filename": "sales_creditcard",
       "default": BatchTable,
       "primary_keys": [
         "credit_card_id"
@@ -449,7 +449,7 @@ def tables():
     },
     "sales_currency_rate": {
       "project": PROJECT,
-      "filename": "sales_currency_rate",
+      "filename": "sales_currencyrate",
       "default": BatchTable,
       "primary_keys": [
         "currency_rate_id"
@@ -465,7 +465,7 @@ def tables():
     },
     "sales_person_credit_card": {
       "project": PROJECT,
-      "filename": "sales_person_credit_card",
+      "filename": "sales_personcreditcard",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -474,7 +474,7 @@ def tables():
     },
     "sales_sales_order_detail": {
       "project": PROJECT,
-      "filename": "sales_sales_order_detail",
+      "filename": "sales_salesorderdetail",
       "default": BatchTable,
       "primary_keys": [
         "sales_order_id",
@@ -483,7 +483,7 @@ def tables():
     },
     "sales_sales_order_header": {
       "project": PROJECT,
-      "filename": "sales_sales_order_header",
+      "filename": "sales_salesorderheader",
       "default": BatchTable,
       "primary_keys": [
         "sales_order_id"
@@ -491,7 +491,7 @@ def tables():
     },
     "sales_sales_order_header_sales_reason": {
       "project": PROJECT,
-      "filename": "sales_sales_order_header_sales_reason",
+      "filename": "sales_salesorderheadersalesreason",
       "default": BatchTable,
       "primary_keys": [
         "sales_order_id",
@@ -500,7 +500,7 @@ def tables():
     },
     "sales_sales_person": {
       "project": PROJECT,
-      "filename": "sales_sales_person",
+      "filename": "sales_salesperson",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id"
@@ -508,7 +508,7 @@ def tables():
     },
     "sales_sales_person_quota_history": {
       "project": PROJECT,
-      "filename": "sales_sales_person_quota_history",
+      "filename": "sales_salespersonquotahistory",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -517,7 +517,7 @@ def tables():
     },
     "sales_sales_reason": {
       "project": PROJECT,
-      "filename": "sales_sales_reason",
+      "filename": "sales_salesreason",
       "default": BatchTable,
       "primary_keys": [
         "sales_reason_id"
@@ -525,7 +525,7 @@ def tables():
     },
     "sales_sales_tax_rate": {
       "project": PROJECT,
-      "filename": "sales_sales_tax_rate",
+      "filename": "sales_salestaxrate",
       "default": BatchTable,
       "primary_keys": [
         "sales_tax_rate_id"
@@ -533,7 +533,7 @@ def tables():
     },
     "sales_sales_territory": {
       "project": PROJECT,
-      "filename": "sales_sales_territory",
+      "filename": "sales_salesterritory",
       "default": BatchTable,
       "primary_keys": [
         "tarritory_id"
@@ -541,7 +541,7 @@ def tables():
     },
     "sales_sales_territory_history": {
       "project": PROJECT,
-      "filename": "sales_sales_territory_history",
+      "filename": "sales_salesterritoryhistory",
       "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
@@ -551,7 +551,7 @@ def tables():
     },
     "sales_shopping_cart_item": {
       "project": PROJECT,
-      "filename": "sales_shopping_cart_item",
+      "filename": "sales_shoppingcartitem",
       "default": BatchTable,
       "primary_keys": [
         "shopping_cart_item_id"
@@ -559,7 +559,7 @@ def tables():
     },
     "sales_special_offer": {
       "project": PROJECT,
-      "filename": "sales_special_offer",
+      "filename": "sales_specialoffer",
       "default": BatchTable,
       "primary_keys": [
         "special_offer_id"
@@ -567,7 +567,7 @@ def tables():
     },
     "sales_special_offer_product": {
       "project": PROJECT,
-      "filename": "sales_special_offer_product",
+      "filename": "sales_specialofferproduct",
       "default": BatchTable,
       "primary_keys": [
         "special_offer_id",

@@ -21,8 +21,8 @@ class Environments(Enum):
   prd = "N/A"
 
 class FileTypes(Enum):
-  yaml = ".yaml",
-  yml = ".yml",
+  yaml = ".yaml"
+  yml = ".yml"
   json = ".json"
 
 def render_jinja(
@@ -82,30 +82,30 @@ def get_environment(spark:SparkSession):
 
 def convert_schema(directory:str):
   logger = logging.getLogger(__name__)
-
+  encoding = "utf-8"
   for filename in os.listdir(directory):
     path, ext = os.path.splitext(filename)
     full_path = os.path.abspath(os.path.join(directory, filename))
     
 
     if  FileTypes(ext) in (FileTypes.yml,FileTypes.yaml):
-      with open(full_path, "r", encoding="utf-8") as f:
+      with open(full_path, "r", encoding=encoding) as f:
         data = yaml.safe_load(f)
 
       path, ext = os.path.splitext(full_path)
-      to_full_path = os.path.join(path, FileTypes.json.name)
+      to_full_path = f"{path}{FileTypes.json.name}"
       logger.info(f"converting {full_path} to {to_full_path}")
-      with open(to_full_path, "w", encoding="utf-8") as f:
+      with open(to_full_path, "w", encoding=encoding) as f:
         json.dumps(data, indent=4)
 
     elif FileTypes(ext) == FileTypes.json:
-      with open(full_path, "r", encoding="utf-8") as f:
+      with open(full_path, "r", encoding=encoding) as f:
         data = json.load(f)
 
       path, ext = os.path.splitext(full_path)
-      to_full_path = os.path.join(path, FileTypes.yaml.name)
+      to_full_path = f"{path}{FileTypes.yaml.name}"
       logger.info(f"converting {full_path} to {to_full_path}")
-      with open(to_full_path, "w", encoding="utf-8") as f:
+      with open(to_full_path, "w", encoding=encoding) as f:
         yaml.safe_dump(data, indent=4)
 
     else:

@@ -36,7 +36,7 @@ class BaseTable(ABC):
     self.db = project
     self.stage_db = f"stage_{project}"
     self.extension = "csv"
-    self.source_path = f"/Volumes/{self.environment.name}_landing/{self.project}/{self.project}/{self.filename}/*/{self.filename}-*.csv"
+    self.source_path = f"/Volumes/{self.environment}_landing/{self.project}/{self.project}/{self.filename}/*/{self.filename}-*.csv"
     
   def _get_merge_on_clause(
     self, 
