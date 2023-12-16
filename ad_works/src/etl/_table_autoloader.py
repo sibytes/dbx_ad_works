@@ -1,4 +1,3 @@
-from pyspark.sql.types import StructType
 from pyspark.sql import DataFrame, functions as fn
 from datetime import datetime
 from typing import Optional
@@ -112,8 +111,9 @@ class AutoloaderTable(BaseTable):
           _metadata.file_size, 
           _metadata.file_modification_time,             
           _metadata.file_block_start,       
-          _metadata.file_block_length,      
-          if(invalid_count=0, true, false) as schema_valid,                        
+          _metadata.file_block_length,
+          if(invalid_count=0, true, false) as schema_valid,   
+          _snapshot_date,                     
           _process_id as process_id,
           now() as load_date         
       from {self.stage_db}.{self.name}
@@ -159,7 +159,7 @@ class AutoloaderTable(BaseTable):
       select 
         src.* except (_corrupt_record, _load_date, _process_id, _metadata),
         src._metadata.file_name as _file_name,
-        to_timestamp(substring_index(substring_index(src._metadata.file_name,'-', -1), '.', 1), 'yyyyMMddHHmmss') as _snapshot_date,
+        to_timestamp(substring_index(substring_index(src._metadata.file_name,'-', -1), '.', 1), 'yyyyMMdd') as _snapshot_date,
         now() as _load_date,
         src._process_id,
         false as _is_migration
