@@ -518,7 +518,7 @@ def tables():
     "sales_sales_reason": {
       "project": PROJECT,
       "filename": "sales_sales_reason",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "sales_reason_id"
       ]
@@ -526,7 +526,7 @@ def tables():
     "sales_sales_tax_rate": {
       "project": PROJECT,
       "filename": "sales_sales_tax_rate",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "sales_tax_rate_id"
       ]
@@ -534,7 +534,7 @@ def tables():
     "sales_sales_territory": {
       "project": PROJECT,
       "filename": "sales_sales_territory",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "tarritory_id"
       ]
@@ -542,7 +542,7 @@ def tables():
     "sales_sales_territory_history": {
       "project": PROJECT,
       "filename": "sales_sales_territory_history",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "business_entity_id",
         "tarritory_id",
@@ -552,7 +552,7 @@ def tables():
     "sales_shopping_cart_item": {
       "project": PROJECT,
       "filename": "sales_shopping_cart_item",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "shopping_cart_item_id"
       ]
@@ -560,7 +560,7 @@ def tables():
     "sales_special_offer": {
       "project": PROJECT,
       "filename": "sales_special_offer",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "special_offer_id"
       ]
@@ -568,7 +568,7 @@ def tables():
     "sales_special_offer_product": {
       "project": PROJECT,
       "filename": "sales_special_offer_product",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "special_offer_id",
         "product_id"
@@ -577,7 +577,7 @@ def tables():
     "sales_store": {
       "project": PROJECT,
       "filename": "sales_store",
-      "default": Batch,
+      "default": BatchTable,
       "primary_keys": [
         "business_entity_id"
       ]
