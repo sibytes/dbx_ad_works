@@ -99,7 +99,7 @@ def convert_schema(directory:str):
       to_full_path = f"{path}{str(FileTypes.json)}"
       logger.info(f"converting {full_path} to {to_full_path}")
       with open(to_full_path, "w", encoding=encoding) as f:
-        json.dumps(data, indent=4)
+        f.write(json.dumps(data, indent=4))
 
     elif FileTypes(ext) == FileTypes.json:
       with open(full_path, "r", encoding=encoding) as f:
@@ -109,7 +109,7 @@ def convert_schema(directory:str):
       to_full_path = f"{path}{str(FileTypes.yaml)}"
       logger.info(f"converting {full_path} to {to_full_path}")
       with open(to_full_path, "w", encoding=encoding) as f:
-        yaml.safe_dump(data, indent=4)
+        f.write(yaml.safe_dump(data, indent=4))
 
     else:
         continue
