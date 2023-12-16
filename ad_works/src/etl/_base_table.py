@@ -59,6 +59,17 @@ class BaseTable(ABC):
       }
     )
 
+  def _create_stage_table(self):
+    self._logger.info(f"Creating stage table `{self.stage_db}`.`{self.name}`")
+    sql = f"""
+      create schema if not exists `{self.stage_db}`"
+    """
+    self._logger.debug(sql)
+    self.spark(sql)
+
+    self._logger.debug(self.sql_stage_table)
+    self.spark.sql(self.sql_stage_table)
+
   def _get_merge_on_clause(
     self, 
     source_alias:str = "src", 

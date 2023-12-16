@@ -1,15 +1,15 @@
 from pyspark.sql.types import StructType
-from pyspark.sql import SDataFrame, functions as fn
+from pyspark.sql import DataFrame, functions as fn
 from datetime import datetime
 from typing import Optional
 from ._base_table import BaseTable
 from pyspark.sql.streaming import StreamingQuery
 from databricks.sdk.runtime import dbutils
-from ._batch_table import BatchTable
-from .utils import Variables
+from ._base_table import BaseTable
 
 
-class AutoloaderTable(BatchTable):
+
+class AutoloaderTable(BaseTable):
 
   def __init__(
       self,**kwargs
@@ -42,67 +42,57 @@ class AutoloaderTable(BatchTable):
       modified_after:Optional[datetime] = None,
       modified_before:Optional[datetime] = None,
   ):
-    self._logger.info(f"creating stage table `{self.stage_db}`.`{self.name}`")
-    sql = f"""
-      create schema if not exists `{self.stage_db}`
-    """
-    self._logger.debug(sql)
-    self.spark.sql(sql)
+    
 
-    self._logger.debug(self.sql_stage_table)
-    self.spark.sql(self.sql_stage_table)
+    self._create_stage_table()
 
-    modifieds = []
+    modifieds = {}
     if isinstance(modified_after, datetime):
       fmt_modified_after = modified_after.strftime("%Y-%m-%d %H:%M:%S")
-      modifieds.append(f"'modifiedAfter' = '{fmt_modified_after}'")
+      modifieds["modifiedAfter"] = fmt_modified_after
     elif modified_after is not None:
       raise Exception(f"Invalid modified_after={modified_after} of type={type(modified_after)}. Parameter must be a datetime or None")
 
     if isinstance(modified_before, datetime):
       fmt_modified_before = modified_before.strftime("%Y-%m-%d %H:%M:%S")
-      modifieds.append(f"'modifiedBefore' = '{fmt_modified_before}'")
+      modifieds["modifiedBefore"] = fmt_modified_before
     elif modified_before is not None:
       raise Exception(f"Invalid modified_before={modified_before} of type={type(modified_before)}. Parameter must be a datetime or None")
 
     if modifieds:
-      modified_clause = ",".join(modifieds)
-      self._logger.info(f"modified_after is set to filter on {modified_clause}")
+      self._logger.info(f"modified is set to filter on {modifieds}")
+      self.source_options = self.source_options | modifieds
     else:
-      modified_clause = ''
-      self._logger.info("modified_after is None and therefore not set")
+      self._logger.info("modified is None and therefore not set")
 
+    if force:
+      self._logger.info(f"clearing checkpoints at {self.checkpoint_path} data will be fully reloaded.")
+      dbutils.fs.rm(self.checkpoint_path, True)
     
-    self._logger.info(f"copy into {self.source_path} into `{self.stage_db}`.`{self.name}` with merge_schema = {str(force).lower()} and force = {str(force).lower()}")
-    sql = f"""
-      copy into `{self.stage_db}`.`{self.name}`
-      FROM
-      (
-          select
-            cast({process_id} as bigint) as process_id,
-            now() as load_date,
-            _metadata as metadata,
-            from_csv(
-              _c0, 
-              '{self.schema_ddl}',
-              map('mode', 'PERMISSIVE')
-            ) as data
-          FROM '{self.source_path}'
-      )
-      FILEFORMAT = CSV
-      FORMAT_OPTIONS (
-        {modified_clause}
-        'mergeSchema' = 'true',
-        'delimiter' = '~',
-        'header' = 'false'
-      )
-      COPY_OPTIONS (
-        'force' = '{str(force).lower()}',
-        'mergeSchema' = '{str(merge_schema).lower()}'
-      );
-    """
-    self._logger.debug(sql)
-    self.spark.sql(sql)
+    self._logger.info(f"autoload {self.source_path} into `{self.stage_db}`.`{self.name}` with merge_schema = {str(force).lower()} and force = {str(force).lower()}")
+
+    destination_options = {
+      "mergeSchema": merge_schema,
+      "checkpointLocation": self.checkpoint_path
+    }
+    stream_data: StreamingQuery = (
+      self.spark.readStream
+        .schema(self.schema)
+        .format("cloudfiles")
+        .options(**self.source_options)
+        .load(self.source_path)
+        .selectExpr(
+          "*",
+          f"cast({process_id} as bigint) as _process_id",
+          "now() as _load_date",
+          "_metadata"
+        )
+        .writeStream
+        .options(**destination_options)
+        .trigger(availableNow=True)
+        .toTable(f"`{self.stage_db}`.`{self.name}`")
+    )
+    stream_data.awaitTermination()
     
 
   def load_audit(
@@ -114,8 +104,8 @@ class AutoloaderTable(BatchTable):
       select
           {self.name} as `table`,            
           count(1) as total_count,
-          sum(if(data._corrupt_record is null, 1, 0)) as valid_count,  
-          sum(if(data._corrupt_record is not null, 1, 0)) as invalid_count,
+          sum(if(_corrupt_record is null, 1, 0)) as valid_count,  
+          sum(if(_corrupt_record is not null, 1, 0)) as invalid_count,
           valid_count / total_count as invalid_ratio         
           _metadata.file_path,              
           _metadata.file_name,              
@@ -124,10 +114,10 @@ class AutoloaderTable(BatchTable):
           _metadata.file_block_start,       
           _metadata.file_block_length,      
           if(invalid_count=0, true, false) as schema_valid,                        
-          h.process_id,
+          _process_id as process_id,
           now() as load_date         
       from {self.stage_db}.{self.name}
-      where h.process_id = {process_id}
+      where _process_id = {process_id}
       group by all
     """
     self._logger.debug(sql)
@@ -163,15 +153,15 @@ class AutoloaderTable(BatchTable):
     self._logger.info(f"extracting {self.name}")
     schema_valid_clause = ""
     if hold_file_if_schema_failed:
-      schema_valid_clause = f"and hf.schema_valid"
+      schema_valid_clause = f"and a.schema_valid"
 
     df = self.spark.sql(f"""
       select 
-        src.data.* except (_corrupt_record),
+        src.* except (_corrupt_record, _load_date, _process_id, _metadata),
         src._metadata.file_name as _file_name,
         to_timestamp(substring_index(substring_index(src._metadata.file_name,'-', -1), '.', 1), 'yyyyMMddHHmmss') as _snapshot_date,
         now() as _load_date,
-        src.process_id as _process_id,
+        src._process_id,
         false as _is_migration
       from {self.stage_db}.{self.name} src
       join {self.db}._audit a 
