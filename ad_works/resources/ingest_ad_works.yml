@@ -9,6 +9,9 @@ resources:
             notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/intialise
             source: WORKSPACE
           existing_cluster_id: 1003-160019-i21cm8l3
+
+
+
         - task_key: hr_department
           depends_on:
             - task_key: initialise
@@ -145,6 +148,15 @@ resources:
             source: WORKSPACE
           existing_cluster_id: 1003-160019-i21cm8l3
         - task_key: person_person
+          depends_on:
+            - task_key: initialise
+          notebook_task:
+            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+            base_parameters:
+              table: ""
+            source: WORKSPACE
+          existing_cluster_id: 1003-160019-i21cm8l3
+        - task_key: person_person_phone
           depends_on:
             - task_key: initialise
           notebook_task:
@@ -586,6 +598,15 @@ resources:
             source: WORKSPACE
           existing_cluster_id: 1003-160019-i21cm8l3
         - task_key: sales_special_offer
+          depends_on:
+            - task_key: initialise
+          notebook_task:
+            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+            base_parameters:
+              table: ""
+            source: WORKSPACE
+          existing_cluster_id: 1003-160019-i21cm8l3
+        - task_key: sales_special_offer_product
           depends_on:
             - task_key: initialise
           notebook_task:
