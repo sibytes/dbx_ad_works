@@ -62,7 +62,7 @@ def tables():
     },
     "person_address": {
       "project": PROJECT,
-      "filename": "person_address",
+      "filename": "person__vaddress",
       "default": AutoloaderTable,
       "primary_keys": [
         "address_id"
@@ -357,7 +357,7 @@ def tables():
     },
     "production_unit_measure": {
       "project": PROJECT,
-      "filename": "productionunitmeasure",
+      "filename": "production_unitmeasure",
       "default": AutoloaderTable,
       "primary_keys": [
         "unit_measure_code"
