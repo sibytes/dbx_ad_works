@@ -22,6 +22,9 @@ with open("./scratch.txt", "w") as f:
 
 # COMMAND ----------
 
+from etl import tables
+import yaml
+
 task = {
   "task_key": "",
   "depends_on": [
@@ -29,12 +32,6 @@ task = {
   "notebook_task" : None,
   "existing_cluster_id": "1003-160019-i21cm8l3"
 }
-
-# COMMAND ----------
-
-from etl import tables
-import yaml
-
 class NoAliasDumper(yaml.SafeDumper):
     def ignore_aliases(self, data):
         return True
@@ -71,25 +68,8 @@ with open("./scratch.yaml", "w") as f:
 
 # COMMAND ----------
 
-from etl import tables
-dependencies_list = [f"""        - task_key: {table}
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3"""
-   for table, details in tables().items()]
 
-with open("./scratch.txt", "w") as f:
-  f.write("\n".join(dependencies_list))
-
-# COMMAND ----------
-
-
-checkpoints = [dbutils.fs.rm(p.path, True) for p in dbutils.fs.ls("/Volumes/dev_hub/checkpoints/ad_works")]
+checkpoints = {p.path: dbutils.fs.rm(p.path, True) for p in dbutils.fs.ls("/Volumes/dev_hub/checkpoints/ad_works")}
 checkpoints
 
 # COMMAND ----------

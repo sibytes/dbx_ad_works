@@ -145,6 +145,7 @@ class AutoloaderTable(BaseTable):
       select 1 cnt 
       from {self.db}._audit a
       where a.process_id = {process_id}
+      and a.table = '{self.name}'
     """).count()
     df_audit = None
     self._logger.info(f"_audit logging count_loaded={count_loaded} and count_loading={count_loading}")
