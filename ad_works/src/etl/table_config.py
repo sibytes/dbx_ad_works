@@ -403,7 +403,7 @@ def tables():
       "filename": "purchasing_purchaseorderheader",
       "default": AutoloaderTable,
       "primary_keys": [
-        "purchase_order_detail"
+        "purchase_order_id"
       ]
     },
     "purchasing_ship_method": {
