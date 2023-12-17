@@ -189,7 +189,7 @@ def tables():
     },
     "production_document": {
       "project": PROJECT,
-      "filename": "production_document",
+      "filename": "production__vdocument",
       "default": AutoloaderTable,
       "primary_keys": [
         "document_node"
