@@ -187,14 +187,14 @@ def tables():
         "culture_id"
       ]
     },
-    "production_document": {
-      "project": PROJECT,
-      "filename": "production__vdocument",
-      "default": AutoloaderTable,
-      "primary_keys": [
-        "document_node"
-      ]
-    },
+    # "production_document": {
+    #   "project": PROJECT,
+    #   "filename": "production__vdocument",
+    #   "default": AutoloaderTable,
+    #   "primary_keys": [
+    #     "document_node"
+    #   ]
+    # },
     "production_illustration": {
       "project": PROJECT,
       "filename": "production_illustration",
@@ -246,7 +246,7 @@ def tables():
     },
     "production_product_document": {
       "project": PROJECT,
-      "filename": "production_productdocument",
+      "filename": "production__vproductdocument",
       "default": AutoloaderTable,
       "primary_keys": [
         "product_id",

@@ -47,15 +47,15 @@ resources:
                 notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
                 source: WORKSPACE
             task_key: hr_employee_pay_history
-        -   depends_on:
-            -   task_key: hr_employee_pay_history
-            existing_cluster_id: 1003-160019-i21cm8l3
-            notebook_task:
-                base_parameters:
-                    table: hr_job_candidate
-                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-                source: WORKSPACE
-            task_key: hr_job_candidate
+        # -   depends_on:
+        #     -   task_key: hr_employee_pay_history
+        #     existing_cluster_id: 1003-160019-i21cm8l3
+        #     notebook_task:
+        #         base_parameters:
+        #             table: hr_job_candidate
+        #         notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+        #         source: WORKSPACE
+        #     task_key: hr_job_candidate
         -   depends_on:
             -   task_key: hr_job_candidate
             existing_cluster_id: 1003-160019-i21cm8l3
@@ -200,15 +200,15 @@ resources:
                 notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
                 source: WORKSPACE
             task_key: production_culture
-        -   depends_on:
-            -   task_key: production_culture
-            existing_cluster_id: 1003-160019-i21cm8l3
-            notebook_task:
-                base_parameters:
-                    table: production_document
-                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-                source: WORKSPACE
-            task_key: production_document
+        # -   depends_on:
+        #     -   task_key: production_culture
+        #     existing_cluster_id: 1003-160019-i21cm8l3
+        #     notebook_task:
+        #         base_parameters:
+        #             table: production_document
+        #         notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+        #         source: WORKSPACE
+        #     task_key: production_document
         -   depends_on:
             -   task_key: production_document
             existing_cluster_id: 1003-160019-i21cm8l3
