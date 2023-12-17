@@ -1,24 +1,12 @@
 resources:
   jobs:
-    ingest_ad_works:
-      name: ingest_ad_works
+    dev_shaun_ryan_ingest_ad_works:
+      name: "[dev shaun_ryan] ingest_ad_works"
+      max_concurrent_runs: 4
       tasks:
         - task_key: initialise
           notebook_task:
             notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/intialise
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-
-
-
-
-        - task_key: person_business_entity_address
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
             source: WORKSPACE
           existing_cluster_id: 1003-160019-i21cm8l3
         - task_key: hr_department
@@ -615,13 +603,83 @@ resources:
               table: ""
             source: WORKSPACE
           existing_cluster_id: 1003-160019-i21cm8l3
+
         - task_key: finalise
           depends_on:
+            - task_key: hr_department
+            - task_key: hr_employee
+            - task_key: hr_employee_department_history
+            - task_key: hr_employee_pay_history
+            - task_key: hr_job_candidate
+            - task_key: hr_shift
+            - task_key: person_address
+            - task_key: person_address_type
+            - task_key: person_business_entity
             - task_key: person_business_entity_address
+            - task_key: person_business_entity_contact
+            - task_key: person_contact_type
+            - task_key: person_country_region
+            - task_key: person_email_address
+            - task_key: person_password
+            - task_key: person_person
+            - task_key: person_person_phone
+            - task_key: person_phone_number_type
+            - task_key: person_state_province
+            - task_key: production_bill_of_materials
+            - task_key: production_culture
+            - task_key: production_document
+            - task_key: production_illustration
+            - task_key: production_location
+            - task_key: production_product
+            - task_key: production_product_category
+            - task_key: production_product_cost_history
+            - task_key: production_product_description
+            - task_key: production_product_document
+            - task_key: production_product_inventory
+            - task_key: production_product_list_price_history
+            - task_key: production_product_model
+            - task_key: production_product_model_illustration
+            - task_key: production_product_model_product_description_culture
+            - task_key: production_product_photo
+            - task_key: production_product_product_photo
+            - task_key: production_product_review
+            - task_key: production_product_subcategory
+            - task_key: production_scrap_reason
+            - task_key: production_transaction_history
+            - task_key: production_transaction_history_archive
+            - task_key: production_unit_measure
+            - task_key: production_work_order
+            - task_key: production_work_order_routing
+            - task_key: purchasing_product_vendor
+            - task_key: purchasing_purchase_order_detail
+            - task_key: purchasing_purchase_order_header
+            - task_key: purchasing_ship_method
+            - task_key: purchasing_vendor
+            - task_key: sales_country_region_currency
+            - task_key: sales_credit_card
+            - task_key: sales_currency
+            - task_key: sales_currency_rate
+            - task_key: sales_customer
+            - task_key: sales_person_credit_card
+            - task_key: sales_sales_order_detail
+            - task_key: sales_sales_order_header
+            - task_key: sales_sales_order_header_sales_reason
+            - task_key: sales_sales_person
+            - task_key: sales_sales_person_quota_history
+            - task_key: sales_sales_reason
+            - task_key: sales_sales_tax_rate
+            - task_key: sales_sales_territory
+            - task_key: sales_sales_territory_history
+            - task_key: sales_shopping_cart_item
+            - task_key: sales_special_offer
+            - task_key: sales_special_offer_product
+            - task_key: sales_store
           notebook_task:
             notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/finalise
             source: WORKSPACE
           existing_cluster_id: 1003-160019-i21cm8l3
+      tags:
+        dev: shaun_ryan
       parameters:
         - name: process_id
           default: "{{job.run_id}}"
