@@ -6,7 +6,7 @@ def get_table(
     spark: SparkSession,
     table: str, 
     load_type: str,
-    schema_version: str|None
+    schema_version: str|None = None
   ):
 
   try:

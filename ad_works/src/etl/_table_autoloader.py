@@ -26,7 +26,7 @@ class AutoloaderTable(BaseTable):
       "header": "true",
       "mode": "PERMISSIVE",
       "encoding": "utf-8",
-      "delimiter": ",",
+      "delimiter": "|",
       "escape": '"',
       "nullValue": "",
       "quote": '"',
@@ -81,7 +81,13 @@ class AutoloaderTable(BaseTable):
         .options(**self.source_options)
         .load(self.source_path)
         .selectExpr(
-          "*",
+          *self._get_select(self.schema),
+          """
+            to_date(substring_index(substring_index(
+              `_metadata`.file_name,
+            "-", -1), ".", 1), "yyyyMMdd")
+            as _snapshot_date
+          """,
           f"cast({process_id} as bigint) as _process_id",
           "now() as _load_date",
           "_metadata"
@@ -101,11 +107,11 @@ class AutoloaderTable(BaseTable):
 
     sql = f"""
       select
-          {self.name} as `table`,            
+          '{self.name}' as `table`,            
           count(1) as total_count,
           sum(if(_corrupt_record is null, 1, 0)) as valid_count,  
           sum(if(_corrupt_record is not null, 1, 0)) as invalid_count,
-          valid_count / total_count as invalid_ratio         
+          valid_count / total_count as invalid_ratio,         
           _metadata.file_path,              
           _metadata.file_name,              
           _metadata.file_size, 
@@ -113,12 +119,20 @@ class AutoloaderTable(BaseTable):
           _metadata.file_block_start,       
           _metadata.file_block_length,
           if(invalid_count=0, true, false) as schema_valid,   
-          _snapshot_date,                     
+          _snapshot_date as snapshot_date,                     
           _process_id as process_id,
           now() as load_date         
       from {self.stage_db}.{self.name}
       where _process_id = {process_id}
-      group by all
+      group by            
+          file_path,              
+          file_name,              
+          file_size, 
+          file_modification_time,             
+          file_block_start,       
+          file_block_length,  
+          snapshot_date,                     
+          process_id  
     """
     self._logger.debug(sql)
     
@@ -157,12 +171,15 @@ class AutoloaderTable(BaseTable):
 
     df = self.spark.sql(f"""
       select 
-        src.* except (_corrupt_record, _load_date, _process_id, _metadata),
-        src._metadata.file_name as _file_name,
-        to_timestamp(substring_index(substring_index(src._metadata.file_name,'-', -1), '.', 1), 'yyyyMMdd') as _snapshot_date,
-        now() as _load_date,
+        src.* except (_corrupt_record, _load_date, _process_id, _metadata, _snapshot_date),
+        src._snapshot_date,
         src._process_id,
-        false as _is_migration
+        now() as _load_date,
+        src._metadata.file_name as _file_name,
+        false as _is_migration,
+        true _is_current,
+        src._snapshot_date as _from_date,
+        to_date('9999-12-31') as _to_date
       from {self.stage_db}.{self.name} src
       join {self.db}._audit a 
         on src._metadata.file_name = a.file_name
@@ -170,9 +187,9 @@ class AutoloaderTable(BaseTable):
        and src._metadata.file_modification_time = a.file_modification_time
       where src._process_id = {process_id}
         {schema_valid_clause}
-        and src.data._corrupt_record is null
+        and src._corrupt_record is null
     """)
-    
+
     return df
 
   def transform(self, df:DataFrame):

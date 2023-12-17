@@ -12,7 +12,7 @@ create table if not exists {{database}}._audit
     file_block_start bigint,
     file_block_length bigint,
     schema_valid boolean,
-    snapshot_date timestamp,
+    snapshot_date date,
     process_id bigint,
     load_date timestamp
 )

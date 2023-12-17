@@ -9,12 +9,17 @@ from typing import Dict
 import os
 import yaml
 import json
+import re
 
 class BaseTable(ABC):
 
   _SCHEMA_PATH = "./../schema"
   _SCHEMA_FORMAT = FileTypes.yaml
   _SQL_PATH = "./../sql"
+  _SRC_CATALOG = "landing"
+  _DST_CATALOG = "hub"
+  _VOLUME_ROOT = "Volumes"
+  _STAGE_DB_PREFIX = "stage"
   
   def __init__(
       self,
@@ -34,17 +39,18 @@ class BaseTable(ABC):
     self.primary_keys = primary_keys
     self.environment = get_environment(spark = self.spark).name
     self.db = project
-    self.stage_db = f"stage_{project}"
+    self.stage_db = f"{self._STAGE_DB_PREFIX}_{project}"
     self.extension = "csv"
     self.schema_version = schema_version
-    self.source_path = f"/Volumes/{self.environment}_landing/{self.project}/{self.project}/{self.filename}/*/{self.filename}-*.csv"
-    self.checkpoint_path = f"/Volumes/{self.environment}_hub/checkpoints/{self.db}/{self.stage_db}_{self.name}"
+    root = f"/{self._VOLUME_ROOT}/{self.environment}_"
+    self.source_path = f"{root}{self._SRC_CATALOG}/{self.project}/{self.project}/{self.filename}/*/{self.filename}-*.{self.extension}"
+    self.checkpoint_path = f"{root}{self._DST_CATALOG}/checkpoints/{self.db}/{self.stage_db}_{self.name}"
     if self.filename is not None:
       self.schema:StructType = self._load_schema(name = self.name)
       self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
       
     self.sql_stage_table = self._load_sql(
-      name = f"stage/{self.stage_db}.table",
+      name = f"{self._STAGE_DB_PREFIX}/{self.stage_db}.table",
       variables = {
         Variables.DATABASE: self.stage_db,
         Variables.TABLE: self.name
@@ -52,7 +58,7 @@ class BaseTable(ABC):
     )
 
     self.sql_table = self._load_sql(
-      name = f"base/{self.db}.table",
+      name = f"{self._DST_CATALOG}/{self.db}.table",
       variables = {
         Variables.DATABASE: self.db,
         Variables.TABLE: self.name,
@@ -61,12 +67,12 @@ class BaseTable(ABC):
     )
 
   def _create_stage_table(self):
-    self._logger.info(f"Creating stage table `{self.stage_db}`.`{self.name}`")
+    self._logger.info(f"Creating {self._STAGE_DB_PREFIX} table `{self.stage_db}`.`{self.name}`")
     sql = f"""
-      create schema if not exists `{self.stage_db}`"
+      create schema if not exists `{self.stage_db}`
     """
     self._logger.debug(sql)
-    self.spark(sql)
+    self.spark.sql(sql)
 
     self._logger.debug(self.sql_stage_table)
     self.spark.sql(self.sql_stage_table)
@@ -129,6 +135,10 @@ class BaseTable(ABC):
   ) -> DataFrame:
     pass
 
+  def _camel_to_snake(self, name:str):
+      snake = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+      return re.sub('([a-z0-9])([A-Z])', r'\1_\2', snake).lower()
+
   def _load_schema(self, name:str):
     
     path = os.path.join(
@@ -159,7 +169,7 @@ class BaseTable(ABC):
   def _get_ddl(self, spark_schema: StructType, header: bool = True):
     self._logger.debug(f"Converting spark schema to ddl with header={str(header)}")
     if header:
-        ddl = [f"{f.name} {f.dataType.simpleString()}" for f in spark_schema.fields]
+        ddl = [f"{self._camel_to_snake(f.name)} {f.dataType.simpleString()}" for f in spark_schema.fields]
         self._logger.debug(ddl)
     else:
         ddl = [
@@ -169,3 +179,11 @@ class BaseTable(ABC):
         self._logger.debug(ddl)
 
     return ddl
+  
+  def _get_select(self, spark_schema: StructType):
+
+    select = [f"`{f.name}` as `{self._camel_to_snake(f.name)}`" for f in spark_schema.fields]
+    # select = ",".join(select)
+    self._logger.debug(select)
+    
+    return select
