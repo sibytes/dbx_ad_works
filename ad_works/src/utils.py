@@ -62,7 +62,7 @@ for table, details in tables().items():
 
 tasks = {"tasks": tasks}
 
-with open("./scratch.yaml", "w") as f:
+with open("../scratch/scratch.yaml", "w") as f:
   f.write(yaml.dump(tasks, indent=4, Dumper=NoAliasDumper))
 
 
