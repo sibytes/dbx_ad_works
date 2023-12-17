@@ -44,14 +44,14 @@ def tables():
         "rate_change_date"
       ]
     },
-    "hr_job_candidate": {
-      "project": PROJECT,
-      "filename": "humanresources_jobcandidate",
-      "default": AutoloaderTable,
-      "primary_keys": [
-        "job_candidate_date"
-      ]
-    },
+    # "hr_job_candidate": {
+    #   "project": PROJECT,
+    #   "filename": "humanresources_jobcandidate",
+    #   "default": AutoloaderTable,
+    #   "primary_keys": [
+    #     "job_candidate_date"
+    #   ]
+    # },
     "hr_shift": {
       "project": PROJECT,
       "filename": "humanresources_shift",
@@ -536,7 +536,7 @@ def tables():
       "filename": "sales_salesterritory",
       "default": AutoloaderTable,
       "primary_keys": [
-        "tarritory_id"
+        "territory_id"
       ]
     },
     "sales_sales_territory_history": {
@@ -545,7 +545,7 @@ def tables():
       "default": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
-        "tarritory_id",
+        "territory_id",
         "start_date"
       ]
     },
