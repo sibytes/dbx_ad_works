@@ -427,7 +427,7 @@ def tables():
       "filename": "sales_countryregioncurrency",
       "default": AutoloaderTable,
       "primary_keys": [
-        "country_region_code"
+        "country_region_code",
         "currency_code"
       ]
     },
