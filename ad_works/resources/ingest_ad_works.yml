@@ -1,7 +1,7 @@
 resources:
   jobs:
     dev_shaun_ryan_ingest_ad_works:
-      name: "[dev shaun_ryan] ingest_ad_works"
+      name: "ingest_ad_works"
       max_concurrent_runs: 4
       tasks:
         - task_key: initialise
