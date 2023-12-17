@@ -12,618 +12,618 @@ resources:
 
 
 
-        - task_key: hr_department
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: hr_employee
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: hr_employee_department_history
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: hr_employee_pay_history
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: hr_job_candidate
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: hr_shift
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_address
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_address_type
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_business_entity
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_business_entity_address
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_business_entity_contact
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_contact_type
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_country_region
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_email_address
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_password
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_person
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_person_phone
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_phone_number_type
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: person_state_province
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_bill_of_materials
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_culture
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_document
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_illustration
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_location
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_category
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_cost_history
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_description
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_document
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_inventory
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_list_price_history
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_model
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_model_illustration
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_model_product_description_culture
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_photo
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_product_photo
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_review
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_product_subcategory
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_scrap_reason
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_transaction_history
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_transaction_history_archive
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_unit_measure
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_work_order
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: production_work_order_routing
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: purchasing_product_vendor
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: purchasing_purchase_order_detail
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: purchasing_purchase_order_header
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: purchasing_ship_method
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: purchasing_vendor
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_country_region_currency
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_credit_card
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_currency
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_currency_rate
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_customer
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_person_credit_card
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_order_detail
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_order_header
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_order_header_sales_reason
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_person
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_person_quota_history
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_reason
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_tax_rate
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_territory
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_sales_territory_history
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_shopping_cart_item
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_special_offer
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_special_offer_product
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
-        - task_key: sales_store
-          depends_on:
-            - task_key: initialise
-          notebook_task:
-            notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-            base_parameters:
-              table: ""
-            source: WORKSPACE
-          existing_cluster_id: 1003-160019-i21cm8l3
+        -   depends_on:
+            -   task_key: initialise
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: hr_department
+        -   depends_on:
+            -   task_key: hr_department
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: hr_employee
+        -   depends_on:
+            -   task_key: hr_employee
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: hr_employee_department_history
+        -   depends_on:
+            -   task_key: hr_employee_department_history
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: hr_employee_pay_history
+        -   depends_on:
+            -   task_key: hr_employee_pay_history
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: hr_job_candidate
+        -   depends_on:
+            -   task_key: hr_job_candidate
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: hr_shift
+        -   depends_on:
+            -   task_key: hr_shift
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_address
+        -   depends_on:
+            -   task_key: person_address
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_address_type
+        -   depends_on:
+            -   task_key: person_address_type
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_business_entity
+        -   depends_on:
+            -   task_key: person_business_entity
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_business_entity_address
+        -   depends_on:
+            -   task_key: person_business_entity_address
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_business_entity_contact
+        -   depends_on:
+            -   task_key: person_business_entity_contact
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_contact_type
+        -   depends_on:
+            -   task_key: person_contact_type
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_country_region
+        -   depends_on:
+            -   task_key: person_country_region
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_email_address
+        -   depends_on:
+            -   task_key: person_email_address
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_password
+        -   depends_on:
+            -   task_key: person_password
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_person
+        -   depends_on:
+            -   task_key: person_person
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_person_phone
+        -   depends_on:
+            -   task_key: initialise
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_phone_number_type
+        -   depends_on:
+            -   task_key: person_phone_number_type
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: person_state_province
+        -   depends_on:
+            -   task_key: person_state_province
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_bill_of_materials
+        -   depends_on:
+            -   task_key: production_bill_of_materials
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_culture
+        -   depends_on:
+            -   task_key: production_culture
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_document
+        -   depends_on:
+            -   task_key: production_document
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_illustration
+        -   depends_on:
+            -   task_key: production_illustration
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_location
+        -   depends_on:
+            -   task_key: production_location
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product
+        -   depends_on:
+            -   task_key: production_product
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_category
+        -   depends_on:
+            -   task_key: production_product_category
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_cost_history
+        -   depends_on:
+            -   task_key: production_product_cost_history
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_description
+        -   depends_on:
+            -   task_key: production_product_description
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_document
+        -   depends_on:
+            -   task_key: production_product_document
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_inventory
+        -   depends_on:
+            -   task_key: production_product_inventory
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_list_price_history
+        -   depends_on:
+            -   task_key: production_product_list_price_history
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_model
+        -   depends_on:
+            -   task_key: production_product_model
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_model_illustration
+        -   depends_on:
+            -   task_key: production_product_model_illustration
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_model_product_description_culture
+        -   depends_on:
+            -   task_key: initialise
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_photo
+        -   depends_on:
+            -   task_key: production_product_photo
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_product_photo
+        -   depends_on:
+            -   task_key: production_product_product_photo
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_review
+        -   depends_on:
+            -   task_key: production_product_review
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_product_subcategory
+        -   depends_on:
+            -   task_key: production_product_subcategory
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_scrap_reason
+        -   depends_on:
+            -   task_key: production_scrap_reason
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_transaction_history
+        -   depends_on:
+            -   task_key: production_transaction_history
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_transaction_history_archive
+        -   depends_on:
+            -   task_key: production_transaction_history_archive
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_unit_measure
+        -   depends_on:
+            -   task_key: production_unit_measure
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_work_order
+        -   depends_on:
+            -   task_key: production_work_order
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: production_work_order_routing
+        -   depends_on:
+            -   task_key: production_work_order_routing
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: purchasing_product_vendor
+        -   depends_on:
+            -   task_key: purchasing_product_vendor
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: purchasing_purchase_order_detail
+        -   depends_on:
+            -   task_key: purchasing_purchase_order_detail
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: purchasing_purchase_order_header
+        -   depends_on:
+            -   task_key: purchasing_purchase_order_header
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: purchasing_ship_method
+        -   depends_on:
+            -   task_key: purchasing_ship_method
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: purchasing_vendor
+        -   depends_on:
+            -   task_key: purchasing_vendor
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_country_region_currency
+        -   depends_on:
+            -   task_key: sales_country_region_currency
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_credit_card
+        -   depends_on:
+            -   task_key: initialise
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_currency
+        -   depends_on:
+            -   task_key: sales_currency
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_currency_rate
+        -   depends_on:
+            -   task_key: sales_currency_rate
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_customer
+        -   depends_on:
+            -   task_key: sales_customer
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_person_credit_card
+        -   depends_on:
+            -   task_key: sales_person_credit_card
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_order_detail
+        -   depends_on:
+            -   task_key: sales_sales_order_detail
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_order_header
+        -   depends_on:
+            -   task_key: sales_sales_order_header
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_order_header_sales_reason
+        -   depends_on:
+            -   task_key: sales_sales_order_header_sales_reason
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_person
+        -   depends_on:
+            -   task_key: sales_sales_person
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_person_quota_history
+        -   depends_on:
+            -   task_key: sales_sales_person_quota_history
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_reason
+        -   depends_on:
+            -   task_key: sales_sales_reason
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_tax_rate
+        -   depends_on:
+            -   task_key: sales_sales_tax_rate
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_territory
+        -   depends_on:
+            -   task_key: sales_sales_territory
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_sales_territory_history
+        -   depends_on:
+            -   task_key: sales_sales_territory_history
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_shopping_cart_item
+        -   depends_on:
+            -   task_key: sales_shopping_cart_item
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_special_offer
+        -   depends_on:
+            -   task_key: sales_special_offer
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_special_offer_product
+        -   depends_on:
+            -   task_key: sales_special_offer_product
+            existing_cluster_id: 1003-160019-i21cm8l3
+            notebook_task:
+                base_parameters:
+                    table: ''
+                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+                source: WORKSPACE
+            task_key: sales_store
 
         - task_key: finalise
           depends_on:
