@@ -16,7 +16,6 @@ class BaseTable(ABC):
   _SCHEMA_FORMAT = FileTypes.yaml
   _SQL_PATH = "./../sql"
   
-
   def __init__(
       self,
       spark:SparkSession,
@@ -40,8 +39,10 @@ class BaseTable(ABC):
     self.schema_version = schema_version
     self.source_path = f"/Volumes/{self.environment}_landing/{self.project}/{self.project}/{self.filename}/*/{self.filename}-*.csv"
     self.checkpoint_path = f"/Volumes/{self.environment}_hub/checkpoints/{self.db}/{self.stage_db}_{self.name}"
-    self.schema:StructType = self._load_schema(name = self.name)
-    self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
+    if self.filename is not None:
+      self.schema:StructType = self._load_schema(name = self.name)
+      self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
+      
     self.sql_stage_table = self._load_sql(
       name = f"stage/{self.stage_db}.table",
       variables = {
