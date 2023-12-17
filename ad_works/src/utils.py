@@ -39,6 +39,10 @@ with open("./scratch.txt", "w") as f:
 
 # COMMAND ----------
 
+dbutils.fs.rm("/Volumes/dev_hub/checkpoints/ad_works/stage_ad_works_person_business_entity_address", True)
+
+# COMMAND ----------
+
 
 # from etl.utils import convert_schema, FileTypes
 
