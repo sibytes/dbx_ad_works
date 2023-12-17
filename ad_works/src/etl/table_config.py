@@ -311,7 +311,7 @@ def tables():
       "filename": "production_productproductphoto",
       "default": AutoloaderTable,
       "primary_keys": [
-        "product_id"
+        "product_id",
         "product_photo_id"
       ]
     },
