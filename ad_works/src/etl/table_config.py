@@ -208,7 +208,7 @@ def tables():
       "filename": "production_location",
       "default": AutoloaderTable,
       "primary_keys": [
-        
+        location_id
       ]
     },
     "production_product": {
@@ -288,7 +288,7 @@ def tables():
         "illustration_id"
       ]
     },
-    "production_product_model_productdescriptionculture": {
+    "production_product_model_product_description_culture": {
       "project": PROJECT,
       "filename": "production_productmodelproductdescriptionculture",
       "default": AutoloaderTable,
