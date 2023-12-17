@@ -208,7 +208,7 @@ def tables():
       "filename": "production_location",
       "default": AutoloaderTable,
       "primary_keys": [
-        location_id
+        "location_id"
       ]
     },
     "production_product": {
