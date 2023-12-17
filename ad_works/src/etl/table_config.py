@@ -394,7 +394,7 @@ def tables():
       "filename": "purchasing_purchaseorderdetail",
       "default": AutoloaderTable,
       "primary_keys": [
-        "purchase_order_detail",
+        "purchase_order_id",
         "purchase_order_detail_id"
       ]
     },
