@@ -57,7 +57,7 @@ resources:
         #         source: WORKSPACE
         #     task_key: hr_job_candidate
         -   depends_on:
-            -   task_key: hr_job_candidate
+            -   task_key: hr_employee_pay_history
             existing_cluster_id: 1003-160019-i21cm8l3
             notebook_task:
                 base_parameters:
@@ -210,7 +210,7 @@ resources:
         #         source: WORKSPACE
         #     task_key: production_document
         -   depends_on:
-            -   task_key: production_document
+            -   task_key: production_culture
             existing_cluster_id: 1003-160019-i21cm8l3
             notebook_task:
                 base_parameters:
@@ -630,7 +630,7 @@ resources:
             - task_key: hr_employee
             - task_key: hr_employee_department_history
             - task_key: hr_employee_pay_history
-            - task_key: hr_job_candidate
+            # - task_key: hr_job_candidate
             - task_key: hr_shift
             - task_key: person_address
             - task_key: person_address_type
@@ -647,7 +647,7 @@ resources:
             - task_key: person_state_province
             - task_key: production_bill_of_materials
             - task_key: production_culture
-            - task_key: production_document
+            # - task_key: production_document
             - task_key: production_illustration
             - task_key: production_location
             - task_key: production_product
