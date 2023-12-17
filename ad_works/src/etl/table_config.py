@@ -10,7 +10,7 @@ def tables():
   return {
     "hr_department": {
       "project": PROJECT,
-      "filename": "hr_department",
+      "filename": "humanresources_department",
       "default": AutoloaderTable,
       "primary_keys": [
         "department_id"
@@ -18,7 +18,7 @@ def tables():
     },
     "hr_employee": {
       "project": PROJECT,
-      "filename": "hr_employee",
+      "filename": "humanresources_employee",
       "default": AutoloaderTable,
       "primary_keys": [
         "business_entity_ID"
@@ -26,7 +26,7 @@ def tables():
     },
     "hr_employee_department_history": {
       "project": PROJECT,
-      "filename": "hr_employeedepartmenthistory",
+      "filename": "humanresources_employeedepartmenthistory",
       "default": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -37,7 +37,7 @@ def tables():
     },
     "hr_employee_pay_history": {
       "project": PROJECT,
-      "filename": "hr_employeepayhistory",
+      "filename": "humanresources_employeepayhistory",
       "default": AutoloaderTable,
       "primary_keys": [
         "business_entity_id",
@@ -46,7 +46,7 @@ def tables():
     },
     "hr_job_candidate": {
       "project": PROJECT,
-      "filename": "hr_jobcandidate",
+      "filename": "humanresources_jobcandidate",
       "default": AutoloaderTable,
       "primary_keys": [
         "job_candidate_date"
@@ -54,7 +54,7 @@ def tables():
     },
     "hr_shift": {
       "project": PROJECT,
-      "filename": "hr_shift",
+      "filename": "humanresources_shift",
       "default": AutoloaderTable,
       "primary_keys": [
         "shift_id"
