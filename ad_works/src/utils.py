@@ -22,6 +22,55 @@ with open("./scratch.txt", "w") as f:
 
 # COMMAND ----------
 
+task = {
+  "task_key": "",
+  "depends_on": [
+  ],
+  "notebook_task" : None,
+  "existing_cluster_id": "1003-160019-i21cm8l3"
+}
+
+# COMMAND ----------
+
+from etl import tables
+import yaml
+
+class NoAliasDumper(yaml.SafeDumper):
+    def ignore_aliases(self, data):
+        return True
+
+tasks = []
+prev_table = "initialise"
+i = 0
+for table, details in tables().items():
+  this_task = task.copy()
+  this_task["task_key"] = table
+  this_task["depends_on"] = [{"task_key": prev_table}]
+  this_task["notebook_task"] = {
+    "notebook_path": "/Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table",
+    "base_parameters": {
+      "table": table
+    },
+    "source": "WORKSPACE"
+  }
+  tasks.append(this_task)
+
+  if i == 16:
+    prev_table = "initialise"
+    i = 0
+  else:
+    prev_table = table
+    i += 1
+
+
+tasks = {"tasks": tasks}
+
+with open("./scratch.yaml", "w") as f:
+  f.write(yaml.dump(tasks, indent=4, Dumper=NoAliasDumper))
+
+
+# COMMAND ----------
+
 from etl import tables
 dependencies_list = [f"""        - task_key: {table}
           depends_on:
