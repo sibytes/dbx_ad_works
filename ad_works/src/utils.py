@@ -88,7 +88,9 @@ with open("./scratch.txt", "w") as f:
 
 # COMMAND ----------
 
-dbutils.fs.rm("/Volumes/dev_hub/checkpoints/ad_works/stage_ad_works_person_business_entity_address", True)
+
+checkpoints = [dbutils.fs.rm(p.path, True) for p in dbutils.fs.ls("/Volumes/dev_hub/checkpoints/ad_works")]
+checkpoints
 
 # COMMAND ----------
 
@@ -96,3 +98,15 @@ dbutils.fs.rm("/Volumes/dev_hub/checkpoints/ad_works/stage_ad_works_person_busin
 # from etl.utils import convert_schema, FileTypes
 
 # convert_schema("../schema/")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
+# MAGIC select * from dev_hub.ad_works.`_audit`
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC
+# MAGIC select * from dev_hub.stage_ad_works.sales_currency_rate
