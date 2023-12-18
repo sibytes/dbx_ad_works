@@ -657,12 +657,12 @@ resources:
             - task_key: production_product_document
             - task_key: production_product_inventory
             - task_key: production_product_list_price_history
-            - task_key: production_product_model
+            # - task_key: production_product_model
             - task_key: production_product_model_illustration
             - task_key: production_product_model_product_description_culture
             - task_key: production_product_photo
             - task_key: production_product_product_photo
-            - task_key: production_product_review
+            # - task_key: production_product_review
             - task_key: production_product_subcategory
             - task_key: production_scrap_reason
             - task_key: production_transaction_history
