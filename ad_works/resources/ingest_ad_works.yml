@@ -290,17 +290,17 @@ resources:
                 notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
                 source: WORKSPACE
             task_key: production_product_list_price_history
+        # -   depends_on:
+        #     -   task_key: production_product_list_price_history
+        #     existing_cluster_id: 1003-160019-i21cm8l3
+        #     notebook_task:
+        #         base_parameters:
+        #             table: production_product_model
+        #         notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+        #         source: WORKSPACE
+        #     task_key: production_product_model
         -   depends_on:
             -   task_key: production_product_list_price_history
-            existing_cluster_id: 1003-160019-i21cm8l3
-            notebook_task:
-                base_parameters:
-                    table: production_product_model
-                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-                source: WORKSPACE
-            task_key: production_product_model
-        -   depends_on:
-            -   task_key: production_product_model
             existing_cluster_id: 1003-160019-i21cm8l3
             notebook_task:
                 base_parameters:
@@ -335,17 +335,17 @@ resources:
                 notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
                 source: WORKSPACE
             task_key: production_product_product_photo
+        # -   depends_on:
+        #     -   task_key: production_product_product_photo
+        #     existing_cluster_id: 1003-160019-i21cm8l3
+        #     notebook_task:
+        #         base_parameters:
+        #             table: production_product_review
+        #         notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
+        #         source: WORKSPACE
+        #     task_key: production_product_review
         -   depends_on:
             -   task_key: production_product_product_photo
-            existing_cluster_id: 1003-160019-i21cm8l3
-            notebook_task:
-                base_parameters:
-                    table: production_product_review
-                notebook_path: /Repos/shaun.ryan@shaunchiburihotmail.onmicrosoft.com/dbx_ad_works/ad_works/src/load_table
-                source: WORKSPACE
-            task_key: production_product_review
-        -   depends_on:
-            -   task_key: production_product_review
             existing_cluster_id: 1003-160019-i21cm8l3
             notebook_task:
                 base_parameters:

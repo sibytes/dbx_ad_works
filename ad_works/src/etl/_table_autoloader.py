@@ -121,7 +121,8 @@ class AutoloaderTable(BaseTable):
           if(invalid_count=0, true, false) as schema_valid,   
           _snapshot_date as snapshot_date,                     
           _process_id as process_id,
-          now() as load_date         
+          now() as stage_load_date,
+          cast(null as timestamp) as hub_load_date         
       from {self.stage_db}.{self.name}
       where _process_id = {process_id}
       group by            

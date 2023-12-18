@@ -271,14 +271,14 @@ def tables():
         "start_date"
       ]
     },
-    "production_product_model": {
-      "project": PROJECT,
-      "filename": "production_productmodel",
-      "default": AutoloaderTable,
-      "primary_keys": [
-        "product_model_id"
-      ]
-    },
+    # "production_product_model": {
+    #   "project": PROJECT,
+    #   "filename": "production_productmodel",
+    #   "default": AutoloaderTable,
+    #   "primary_keys": [
+    #     "product_model_id"
+    #   ]
+    # },
     "production_product_model_illustration": {
       "project": PROJECT,
       "filename": "production_productmodelillustration",
@@ -315,14 +315,14 @@ def tables():
         "product_photo_id"
       ]
     },
-    "production_product_review": {
-      "project": PROJECT,
-      "filename": "production_productreview",
-      "default": AutoloaderTable,
-      "primary_keys": [
-        "product_review_id"
-      ]
-    },
+    # "production_product_review": {
+    #   "project": PROJECT,
+    #   "filename": "production_productreview",
+    #   "default": AutoloaderTable,
+    #   "primary_keys": [
+    #     "product_review_id"
+    #   ]
+    # },
     "production_product_subcategory": {
       "project": PROJECT,
       "filename": "production_productsubcategory",
