@@ -51,8 +51,8 @@ fields:
     name: ModifiedDate
     nullable: true
     type: timestamp
--   metadata: {}
-    name: _corrupt_record
-    nullable: true
-    type: string
+# -   metadata: {}
+#     name: _corrupt_record
+#     nullable: true
+#     type: string
 type: struct

@@ -45,9 +45,11 @@ class BaseTable(ABC):
     root = f"/{self._VOLUME_ROOT}/{self.environment}_"
     self.source_path = f"{root}{self._SRC_CATALOG}/{self.project}/{self.project}/{self.filename}/*/{self.filename}-*.{self.extension}"
     self.checkpoint_path = f"{root}{self._DST_CATALOG}/checkpoints/{self.db}/{self.stage_db}_{self.name}"
+    self.schema_ddl:str = None
     if self.filename is not None:
       self.schema:StructType = self._load_schema(name = self.name)
-      self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
+      # self.schema_ddl:str = ",\n".join(self._get_ddl(self.schema, header=True))
+      self.schema_ddl:str = ", ".join(self._get_ddl(self.schema, header=True))
       
     self.sql_stage_table = self._load_sql(
       name = f"{self._STAGE_DB_PREFIX}/{self.stage_db}.table",

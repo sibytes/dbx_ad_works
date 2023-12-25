@@ -14,17 +14,19 @@ class AutoloaderTable(BaseTable):
       self,**kwargs
   ):
     super().__init__(**kwargs)
+    
     self.source_options = {
       "cloudFiles.format": "csv",
       "cloudFiles.schemaLocation": self.checkpoint_path,
       "cloudFiles.useIncrementalListing": "auto",
       # schema
-      "inferSchema": "false",
-      "mode": "true",
-      "columnNameOfCorruptRecord": "_corrupt_record",
+      "cloudFiles.schemaEvolutionMode": "rescue",
+      "cloudFiles.inferColumnTypes": "true",
+      "cloudFiles.schemaHints": self.schema_ddl,
+      "enforceSchema": "true",
+      "rescuedDataColumn" : "_rescued_data",
       # csv
       "header": "true",
-      "mode": "PERMISSIVE",
       "encoding": "utf-8",
       "delimiter": "|",
       "escape": '"',
@@ -32,6 +34,26 @@ class AutoloaderTable(BaseTable):
       "quote": '"',
       "emptyValue": ""
     }
+
+    # self.source_options = {
+    #   "cloudFiles.format": "csv",
+    #   "cloudFiles.schemaLocation": self.checkpoint_path,
+    #   "cloudFiles.useIncrementalListing": "auto",
+    #   # schema
+    #   "inferSchema": "false",
+    #   "columnNameOfCorruptRecord": "_corrupt_record",
+    #   # csv
+    #   "header": "true",
+    #   "mode": "PERMISSIVE",
+    #   "encoding": "utf-8",
+    #   "delimiter": "|",
+    #   "escape": '"',
+    #   "nullValue": "",
+    #   "quote": '"',
+    #   "emptyValue": ""
+    # }
+
+
 
   def stage_into(
       self, 
@@ -109,8 +131,8 @@ class AutoloaderTable(BaseTable):
       select
           '{self.name}' as `table`,            
           count(1) as total_count,
-          sum(if(_corrupt_record is null, 1, 0)) as valid_count,  
-          sum(if(_corrupt_record is not null, 1, 0)) as invalid_count,
+          sum(if(_rescued_data is null, 1, 0)) as valid_count,  
+          sum(if(_rescued_data is not null, 1, 0)) as invalid_count,
           valid_count / total_count as invalid_ratio,         
           _metadata.file_path,              
           _metadata.file_name,              
@@ -173,7 +195,7 @@ class AutoloaderTable(BaseTable):
 
     df = self.spark.sql(f"""
       select 
-        src.* except (_corrupt_record, _load_date, _process_id, _metadata, _snapshot_date),
+        src.* except (_rescued_data, _load_date, _process_id, _metadata, _snapshot_date),
         src._snapshot_date,
         src._process_id,
         now() as _load_date,
@@ -189,7 +211,7 @@ class AutoloaderTable(BaseTable):
        and src._metadata.file_modification_time = a.file_modification_time
       where src._process_id = {process_id}
         {schema_valid_clause}
-        and src._corrupt_record is null
+        and src._rescued_data is null
     """)
 
     return df

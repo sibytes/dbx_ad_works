@@ -1,6 +1,6 @@
 create table if not exists {{ database }}.{{ table }} 
 (
-    _corrupt_record string,
+    _rescued_data string,
     _snapshot_date date not null,
     _process_id bigint not null,
     _load_date timestamp,
