@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from pyspark.sql import DataFrame, SparkSession
+from pyspark.sql.streaming import StreamingQuery
 import logging
 from typing import Optional
 from datetime import datetime
@@ -98,6 +99,23 @@ class BaseTable(ABC):
     return sql
   
   @abstractmethod
+  def stage_extract(
+      self, 
+      process_id:int, 
+      force=False,
+      modified_after:Optional[datetime] = None,
+      modified_before:Optional[datetime] = None
+  ) -> DataFrame|StreamingQuery:
+    pass
+
+  @abstractmethod
+  def stage_load(
+      self, 
+      df:DataFrame|StreamingQuery, 
+      merge_schema=True
+  ):
+    pass
+  
   def stage_into(
       self, 
       process_id:int, 
@@ -106,13 +124,20 @@ class BaseTable(ABC):
       modified_after:Optional[datetime] = None,
       modified_before:Optional[datetime] = None
   ):
-    pass
+    df = self.stage_extract(
+      process_id=process_id, 
+      force=force,
+      modified_after=modified_after,
+      modified_before=modified_before
+    )
+    self.stage_load(df=df,merge_schema=merge_schema)
+    
 
   @abstractmethod
   def load_audit(
     self, 
     process_id: int
-  ) -> Optional[DataFrame]:
+  ):
     pass
 
   @abstractmethod

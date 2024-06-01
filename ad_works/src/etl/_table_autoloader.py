@@ -55,15 +55,13 @@ class AutoloaderTable(BaseTable):
 
 
 
-  def stage_into(
+  def stage_extract(
       self, 
       process_id:int, 
-      merge_schema=True, 
       force=False,
       modified_after:Optional[datetime] = None,
       modified_before:Optional[datetime] = None,
   ):
-    
 
     self._create_stage_table()
 
@@ -90,12 +88,10 @@ class AutoloaderTable(BaseTable):
       self._logger.info(f"clearing checkpoints at {self.checkpoint_path} data will be fully reloaded.")
       dbutils.fs.rm(self.checkpoint_path, True)
     
-    self._logger.info(f"autoload {self.source_path} into `{self.stage_db}`.`{self.name}` with merge_schema = {str(force).lower()} and force = {str(force).lower()}")
+    self._logger.info(f"""
+        autoload {self.source_path} into `{self.stage_db}`.`{self.name}` with merge_schema = {str(force).lower()} and force = {str(force).lower()}
+    """)
 
-    destination_options = {
-      "mergeSchema": merge_schema,
-      "checkpointLocation": self.checkpoint_path
-    }
     stream_data: StreamingQuery = (
       self.spark.readStream
         .schema(self.schema)
@@ -114,13 +110,26 @@ class AutoloaderTable(BaseTable):
           "now() as _load_date",
           "_metadata"
         )
-        .writeStream
+    )
+    return stream_data
+    
+
+  def stage_load(
+      self, 
+      df:DataFrame|StreamingQuery, 
+      merge_schema=True
+  ):
+    destination_options = {
+      "mergeSchema": merge_schema,
+      "checkpointLocation": self.checkpoint_path
+    }
+    df = (df.writeStream
         .options(**destination_options)
         .trigger(availableNow=True)
-        .toTable(f"`{self.stage_db}`.`{self.name}`")
-    )
-    stream_data.awaitTermination()
+        .toTable(f"`{self.stage_db}`.`{self.name}`"))
     
+    df.awaitTermination()
+
 
   def load_audit(
     self, 
@@ -170,18 +179,15 @@ class AutoloaderTable(BaseTable):
       where a.process_id = {process_id}
       and a.table = '{self.name}'
     """).count()
-    df_audit = None
+
     self._logger.info(f"_audit logging count_loaded={count_loaded} and count_loading={count_loading}")
     if count_loaded == 0 and count_loading > 0:
       self._logger.info(f"loading {count_loading} records into _audit")
-      df_audit = df.write.format("delta").mode("append").saveAsTable(f"{self.db}._audit")
+      df.write.format("delta").mode("append").saveAsTable(f"{self.db}._audit")
     elif count_loaded == count_loading:
       self._logger.info(f"{count_loaded} records already logger into _audit")
     else:
       raise Exception(f"Inconistency has occured in the _audit logging count_loaded={count_loaded} and count_loading={count_loading}")
-
-    return df_audit
-
 
   def extract(
     self,
